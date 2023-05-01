@@ -1,15 +1,12 @@
 package com.hockeyhigh.util;
 
-import com.hockeyhigh.model.entity.enums.MediaType;
-import com.hockeyhigh.model.entity.media.Media;
+import com.hockeyhigh.model.enums.MediaType;
+import com.hockeyhigh.model.media.Media;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 

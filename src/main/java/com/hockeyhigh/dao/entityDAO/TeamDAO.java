@@ -1,8 +1,8 @@
 package com.hockeyhigh.dao.entityDAO;
 
 import com.hockeyhigh.dao.DAO;
-import com.hockeyhigh.model.entity.builders.TeamBuilder;
-import com.hockeyhigh.model.entity.team.Team;
+import com.hockeyhigh.model.builders.TeamBuilder;
+import com.hockeyhigh.model.team.Team;
 import com.hockeyhigh.util.DBUtil;
 
 import java.sql.Connection;

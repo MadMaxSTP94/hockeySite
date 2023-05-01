@@ -1,5 +1,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.hockeyhigh.model.entity.media.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.hockeyhigh.model.media.*" %>
+<%@ page import="com.hockeyhigh.dto.*" %>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -141,6 +143,7 @@
 		<!--Таблица команд-->
 		<div class="team-standings">
 			<h1 class="team-standings-title">STANDINGS 22-2023</h1>
+
 			<div class="teams-position">
 				<table class="teams">
 					<tr class="stat">
@@ -576,5 +579,7 @@ function targetClick () {
 }
 targetClick()
 	</script>
+<script src="component/jquery/jquery.js" type="text/javascript"></script>
+<script src="component/jquery/jquery.min.js" type="text/javascript"></script>
 </body>
 </html>

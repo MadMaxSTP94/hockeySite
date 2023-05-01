@@ -1,15 +1,15 @@
 package com.hockeyhigh.test;
 
-import com.hockeyhigh.model.entity.builders.PlayerBuilder;
-import com.hockeyhigh.model.entity.builders.statsBuilder.GoalieStatsBuilder;
-import com.hockeyhigh.model.entity.builders.statsBuilder.PlayerStatsBuilder;
-import com.hockeyhigh.model.entity.enums.Country;
-import com.hockeyhigh.model.entity.enums.Position;
-import com.hockeyhigh.model.entity.enums.Season;
-import com.hockeyhigh.model.entity.enums.Shoots;
-import com.hockeyhigh.model.entity.player.Player;
-import com.hockeyhigh.model.entity.statistics.GoalieStats;
-import com.hockeyhigh.model.entity.statistics.PlayerStats;
+import com.hockeyhigh.model.builders.PlayerBuilder;
+import com.hockeyhigh.model.builders.statsBuilder.GoalieStatsBuilder;
+import com.hockeyhigh.model.builders.statsBuilder.PlayerStatsBuilder;
+import com.hockeyhigh.model.enums.Country;
+import com.hockeyhigh.model.enums.Position;
+import com.hockeyhigh.model.enums.Season;
+import com.hockeyhigh.model.enums.Shoots;
+import com.hockeyhigh.model.player.Player;
+import com.hockeyhigh.model.statistics.GoalieStats;
+import com.hockeyhigh.model.statistics.PlayerStats;
 import com.hockeyhigh.util.DataUtil;
 
 import java.text.ParseException;

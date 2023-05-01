@@ -1,8 +1,9 @@
 package com.hockeyhigh.dao.statsDAO;
 
 import com.hockeyhigh.dao.DAO;
-import com.hockeyhigh.model.entity.builders.statsBuilder.TeamStatsBuilder;
-import com.hockeyhigh.model.entity.statistics.TeamStats;
+import com.hockeyhigh.model.builders.statsBuilder.TeamStatsBuilder;
+import com.hockeyhigh.model.enums.Season;
+import com.hockeyhigh.model.statistics.TeamStats;
 import com.hockeyhigh.util.DBUtil;
 
 import java.sql.Connection;
@@ -15,7 +16,7 @@ import java.util.List;
 public class TeamStatsDAO implements DAO<TeamStats> {
     private static TeamStatsDAO instance;
     private static final String ALL_TEAM_STATS = "select * from team_stats;";
-    private static final String GET_TEAM_STATS = "select * from team_stats where id =? ;";
+    private static final String GET_TEAM_STATS = "select * from team_stats where team_id =? ;";
     private static final String DELETE_TEAM_STATS = "delete from team_stats where id =?;";
     private static final String INSERT_TEAM_STATS = "insert into team_stats(team_id,game_id,wins,ties,loses,ot_wins,goals_for,goals_against," +
                                                     "pp_attempts,pp_goals,pk_attempts,pk_goals,season) values(?,?,?,?,?,?,?,?,?,?,?,?,?);";
@@ -23,6 +24,8 @@ public class TeamStatsDAO implements DAO<TeamStats> {
     private static final String UPDATE_TEAM_STATS= "update team_stats set team_id = ?,game_id=?,wins = ?,ties=?," +
                                                    "loses= ?,ot_wins= ?,goals_for= ?,goals_against= ?,pp_attempts=?," +
                                                    "pp_goals=?,pk_attempts=?,pk_goals=?,season=? where id = ?";
+
+    private static final String GET_TEAM_SEASON_STATS = "select * from team_stats where team_id=? and season=?;";
 
     private TeamStatsDAO() {}
 
@@ -100,6 +103,25 @@ public class TeamStatsDAO implements DAO<TeamStats> {
         catch(Exception ex) {
             System.out.println("No value present! From teamStatsDAO delete()");
         }
+    }
+
+    public List<TeamStats> getSeasonStats(long id, Season season) {
+        List<TeamStats> teamStats = new ArrayList<>();
+        try{
+            Connection connection = DBUtil.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_TEAM_SEASON_STATS);
+            preparedStatement.setInt(1,(int)id);
+            preparedStatement.setString(2,season.toString());
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()) {
+                TeamStats teamStat = new TeamStatsBuilder(rs).build();
+                teamStats.add(teamStat);
+            }
+        }
+        catch(Exception ex) {
+            System.out.println("Exception in getSeasonStats()");
+        }
+        return teamStats;
     }
 
     public static TeamStatsDAO getInstance() {

@@ -1,9 +1,9 @@
 package com.hockeyhigh.test;
 
-import com.hockeyhigh.model.entity.builders.statsBuilder.GoalieStatsBuilder;
-import com.hockeyhigh.model.entity.builders.statsBuilder.SkaterStatsBuilder;
-import com.hockeyhigh.model.entity.statistics.GoalieStats;
-import com.hockeyhigh.model.entity.statistics.SkaterStats;
+import com.hockeyhigh.model.builders.statsBuilder.GoalieStatsBuilder;
+import com.hockeyhigh.model.builders.statsBuilder.SkaterStatsBuilder;
+import com.hockeyhigh.model.statistics.GoalieStats;
+import com.hockeyhigh.model.statistics.SkaterStats;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

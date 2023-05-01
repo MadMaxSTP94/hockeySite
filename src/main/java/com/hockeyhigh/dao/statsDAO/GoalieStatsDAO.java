@@ -1,8 +1,8 @@
 package com.hockeyhigh.dao.statsDAO;
 
 import com.hockeyhigh.dao.DAO;
-import com.hockeyhigh.model.entity.builders.statsBuilder.GoalieStatsBuilder;
-import com.hockeyhigh.model.entity.statistics.GoalieStats;
+import com.hockeyhigh.model.builders.statsBuilder.GoalieStatsBuilder;
+import com.hockeyhigh.model.statistics.GoalieStats;
 import com.hockeyhigh.util.DBUtil;
 
 import java.sql.Connection;

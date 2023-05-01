@@ -1,7 +1,7 @@
 package com.hockeyhigh.dao.mediaDAO;
 
 import com.hockeyhigh.dao.DAO;
-import com.hockeyhigh.model.entity.media.Media;
+import com.hockeyhigh.model.media.Media;
 import com.hockeyhigh.util.DBUtil;
 
 import java.sql.Connection;
