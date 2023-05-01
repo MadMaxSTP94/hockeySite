@@ -17,6 +17,7 @@ com\hockeyhigh\model\media\Article.class
 com\hockeyhigh\dao\statsDAO\PlayerStatsDAO.class
 com\hockeyhigh\model\builders\statsBuilder\TeamStatsBuilder.class
 com\hockeyhigh\util\DBUtil.class
+com\hockeyhigh\util\HTMLUtil.class
 com\hockeyhigh\model\builders\GameBuilder.class
 com\hockeyhigh\model\media\Media.class
 com\hockeyhigh\util\TeamDTOUtil.class

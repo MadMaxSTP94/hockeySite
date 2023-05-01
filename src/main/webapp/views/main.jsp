@@ -1,7 +1,9 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.hockeyhigh.model.media.*" %>
-<%@ page import="com.hockeyhigh.dto.*" %>
+<%@ page import="com.hockeyhigh.*" %>
+<%@ page import="com.hockeyhigh.util.*" %>
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -143,74 +145,16 @@
 		<!--Таблица команд-->
 		<div class="team-standings">
 			<h1 class="team-standings-title">STANDINGS 22-2023</h1>
-
-			<div class="teams-position">
-				<table class="teams">
-					<tr class="stat">
-						<td class="teams-table-column"></td>
-						<td class="teams-table-column">Team</td>
-						<td class="teams-table-column">GP</td>
-						<td class="teams-table-column">W</td>
-						<td class="teams-table-column">T</td>
-						<td class="teams-table-column">L</td>
-						<td class="teams-table-column">OTW</td>
-						<td class="teams-table-column">P</td>
-					</tr>
-					<tr class="stat" id="nech">
-						<td class="teams-table-column">1</td>
-						<td class="teams-table-column">
-							<div>
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<p class="team-name">Assat</p>
-							</div>
-
-						</td>
-						<td class="teams-table-column">44</td>
-						<td class="teams-table-column">29</td>
-						<td class="teams-table-column">13</td>
-						<td class="teams-table-column">2</td>
-						<td class="teams-table-column">0</td>
-						<td class="teams-table-column">78</td>
-					</tr>
-					<tr class="stat">
-						<td class="teams-table-column">2</td>
-						<td class="teams-table-column">
-							<div>
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<p class="team-name">Pelicans</p>
-							</div>
-						</td>
-						<td class="teams-table-column">44</td>
-						<td class="teams-table-column">29</td>
-						<td class="teams-table-column">13</td>
-						<td class="teams-table-column">2</td>
-						<td class="teams-table-column">0</td>
-						<td class="teams-table-column">78</td>
-					</tr>
-					<tr class="stat" id="nech">
-						<td class="teams-table-column">3</td>
-						<td class="teams-table-column">
-							<div>
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<p class="team-name">Arizona Coyotes</p>
-							</div>
-						</td>
-						<td class="teams-table-column">44</td>
-						<td class="teams-table-column">29</td>
-						<td class="teams-table-column">13</td>
-						<td class="teams-table-column">2</td>
-						<td class="teams-table-column">0</td>
-						<td class="teams-table-column">78</td>
-					</tr>
-				</table>
-
-			</div>
-
+			<%=request.getAttribute("team_table")%>
 			<div class="full-teams-stats-link">
 				<a href="" class="anchor">
 					<p>SEE STANDINGS WITH MORE DETAILS</p>
 				</a>
 			</div>
+
+
+			<% String str;%>
+
 
 			<!--Teams-->
 		</div>

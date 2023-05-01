@@ -4,6 +4,7 @@ import com.hockeyhigh.dto.team.HighlightTeamStatsDTO;
 import com.hockeyhigh.model.enums.MediaType;
 import com.hockeyhigh.model.enums.Season;
 import com.hockeyhigh.model.media.Media;
+import com.hockeyhigh.util.HTMLUtil;
 import com.hockeyhigh.util.TeamDTOUtil;
 
 import javax.servlet.ServletException;
@@ -21,6 +22,9 @@ public class TestServlet extends HttpServlet {
         List<HighlightTeamStatsDTO> list = TeamDTOUtil.getTeamDTO(Season._20_21);
         req.setAttribute("team_list",list);
         req.setAttribute("media",media);
+
+        String team_table = HTMLUtil.getTable(list);
+        req.setAttribute("team_table", team_table);
 
         getServletContext().getRequestDispatcher("/views/main.jsp").forward(req,resp);
     }

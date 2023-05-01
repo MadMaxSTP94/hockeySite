@@ -28,6 +28,7 @@ D:\Курсач_Back\src\main\java\com\hockeyhigh\model\builders\GameBuilder.jav
 D:\Курсач_Back\src\main\java\com\hockeyhigh\model\enums\Country.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\model\enums\Position.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\model\team\Team.java
+D:\Курсач_Back\src\main\java\com\hockeyhigh\util\HTMLUtil.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\dao\entityDAO\PlayerDAO.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\model\statistics\GameStats.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\model\enums\Season.java
