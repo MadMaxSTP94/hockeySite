@@ -3,11 +3,14 @@ package com.hockeyhigh.test;
 import com.hockeyhigh.dao.entityDAO.GameDAO;
 import com.hockeyhigh.dao.entityDAO.TeamDAO;
 import com.hockeyhigh.dao.statsDAO.TeamStatsDAO;
+import com.hockeyhigh.dto.GameDTO;
 import com.hockeyhigh.dto.team.HighlightTeamStatsDTO;
+import com.hockeyhigh.dto.team.ShortTeamGameDTO;
 import com.hockeyhigh.model.enums.Season;
 import com.hockeyhigh.model.game.Game;
 import com.hockeyhigh.model.statistics.TeamStats;
 import com.hockeyhigh.model.team.Team;
+import com.hockeyhigh.util.GameDTOUtil;
 import com.hockeyhigh.util.TeamDTOUtil;
 
 import java.io.IOException;
@@ -109,6 +112,7 @@ public class TestFile {
         TeamStats teamStats = TeamDTOUtil.getSumOfEachStat(teamStatsList);
         HighlightTeamStatsDTO highlightTeamStatsDTO = TeamDTOUtil.generateTeamDTO(team1, teamStats);*/
         List<HighlightTeamStatsDTO> list = TeamDTOUtil.getTeamDTO(Season._20_21);
+        List<GameDTO> gameDTOS = GameDTOUtil.getSchedule();
         System.out.println("Well done!");
 
     }

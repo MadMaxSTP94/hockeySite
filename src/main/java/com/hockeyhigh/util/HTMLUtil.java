@@ -1,11 +1,12 @@
 package com.hockeyhigh.util;
 
+import com.hockeyhigh.dto.GameDTO;
 import com.hockeyhigh.dto.team.HighlightTeamStatsDTO;
 
 import java.util.List;
 
 public class HTMLUtil {
-    public static String getTable(List< HighlightTeamStatsDTO > list){
+    public static String getTable(List<HighlightTeamStatsDTO> list){
         StringBuilder builder = new StringBuilder("<div class=\"teams-position\">\n" +
                 "\t\t\t\t<table class=\"teams\">\n" +
                 "\t\t\t\t\t<tr class=\"stat\">\n" +
@@ -47,66 +48,43 @@ public class HTMLUtil {
         return builder.toString();
 
     }
+
+    public static String getSchedule(List<GameDTO> list) {
+        StringBuilder builder = new StringBuilder();
+        int counter = 1;
+        for (GameDTO gameDTO : list) {
+            if(counter == 1) builder.append("<div class=\"games-list\">");
+
+            builder.append("<div class=\"game\">\n" +
+                    "\t\t\t\t\t<div class=\"date\">" + gameDTO.getDate() + "</div>\n" +
+                    "\t\t\t\t\t<div class=\"status\">" + gameDTO.getStatus() + "</div>\n" +
+                    "\t\t\t\t\t<div class=\"game-score\">\n" +
+                    "\t\t\t\t\t\t<div class=\"game-team\">\n" +
+                    "\t\t\t\t\t\t\t<img src=\"" + gameDTO.getHome().getTeam_logo_url() + "\" alt=\"\" class=\"team-logo\">\n" +
+                    "\t\t\t\t\t\t\t<p class=\"team-name\">" + gameDTO.getHome().getTeam_name() + "</p>\n" +
+                    "\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t<div class=\"score\">\n" +
+                    "\t\t\t\t\t\t\t<p class=\"total-score\">" + gameDTO.getHome().getGoals() + " - " + gameDTO.getGuest().getGoals() +"</p>\n" +
+                    "\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t<div class=\"game-team\">\n" +
+                    "\t\t\t\t\t\t\t<img src=\"" + gameDTO.getGuest().getTeam_logo_url() + "\" alt=\"\" class=\"team-logo\">\n" +
+                    "\t\t\t\t\t\t\t<p class=\"team-name\">" + gameDTO.getGuest().getTeam_name() + "</p>\n" +
+                    "\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t</div>");
+
+            counter++;
+
+            if(gameDTO.equals(list.get(list.size() - 1))) builder.append("</div>");
+
+            if(counter == 4) {
+                builder.append("</div>");
+                counter = 1;
+            }
+
+        }
+        return builder.toString();
+    }
+
+
 }
-
-/*<div class="teams-position">
-				<table class="teams">
-					<tr class="stat">
-						<td class="teams-table-column"></td>
-						<td class="teams-table-column">Team</td>
-						<td class="teams-table-column">GP</td>
-						<td class="teams-table-column">W</td>
-						<td class="teams-table-column">T</td>
-						<td class="teams-table-column">L</td>
-						<td class="teams-table-column">OTW</td>
-						<td class="teams-table-column">P</td>
-					</tr>
-					<tr class="stat" id="nech">
-						<td class="teams-table-column">1</td>
-						<td class="teams-table-column">
-							<div>
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<p class="team-name">Assat</p>
-							</div>
-						</td>
-						<td class="teams-table-column">44</td>
-						<td class="teams-table-column">29</td>
-						<td class="teams-table-column">13</td>
-						<td class="teams-table-column">2</td>
-						<td class="teams-table-column">0</td>
-						<td class="teams-table-column">78</td>
-					</tr>
-					<tr class="stat">
-						<td class="teams-table-column">2</td>
-						<td class="teams-table-column">
-							<div>
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<p class="team-name">Pelicans</p>
-							</div>
-						</td>
-						<td class="teams-table-column">44</td>
-						<td class="teams-table-column">29</td>
-						<td class="teams-table-column">13</td>
-						<td class="teams-table-column">2</td>
-						<td class="teams-table-column">0</td>
-						<td class="teams-table-column">78</td>
-					</tr>
-					<tr class="stat" id="nech">
-						<td class="teams-table-column">3</td>
-						<td class="teams-table-column">
-							<div>
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<p class="team-name">Arizona Coyotes</p>
-							</div>
-						</td>
-						<td class="teams-table-column">44</td>
-						<td class="teams-table-column">29</td>
-						<td class="teams-table-column">13</td>
-						<td class="teams-table-column">2</td>
-						<td class="teams-table-column">0</td>
-						<td class="teams-table-column">78</td>
-					</tr>
-				</table>
-
-			</div>
-*/

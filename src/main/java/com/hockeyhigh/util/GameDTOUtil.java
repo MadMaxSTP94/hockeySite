@@ -43,7 +43,7 @@ public class GameDTOUtil {
             gameDTOBuilder.setStatus(game.getStatus());
             //Опасненько
             gameDTOBuilder.setHome(shortTeamGameDTOList.get(0));
-            gameDTOBuilder.setHome(shortTeamGameDTOList.get(1));
+            gameDTOBuilder.setGuest(shortTeamGameDTOList.get(1));
 
             gameDTOS.add(gameDTOBuilder.build());
 
@@ -55,7 +55,7 @@ public class GameDTOUtil {
         List<TeamStats> teamStatsList = new ArrayList<>(2);
         for(TeamStats stats : teamStats) {
             if(stats.getGame_id() == game_id) {
-                teamStats.add(stats);
+                teamStatsList.add(stats);
             }
         }
         return teamStatsList;

@@ -72,58 +72,10 @@
 			<!--Здесь будут игры-->
 
 			<div class="games-list">
-				<div class="game">
-					<div class="date">Today</div>
-					<div class="status">2nd</div>
-					<div class="game-score">
-						<div class="game-team">
-							<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-							<p class="team-name">Assat</p>
-						</div>
-						<div class="score">
-							<p class="total-score">4 - 1</p>
-						</div>
-						<div class="game-team">
-							<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-							<p class="team-name">Assat</p>
-						</div>
-					</div>
-				</div>
-				<div class="game">
-					<div class="date">Today</div>
-					<div class="status">2nd</div>
-					<div class="game-score">
-						<div class="game-team">
-							<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-							<p class="team-name">Assat</p>
-						</div>
-						<div class="score">
-							<p class="total-score">4 - 1</p>
-						</div>
-						<div class="game-team">
-							<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-							<p class="team-name">Assat</p>
-						</div>
-					</div>
-				</div>
-				<div class="game">
-					<div class="date">Today</div>
-					<div class="status">2nd</div>
-					<div class="game-score">
-						<div class="game-team">
-							<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-							<p class="team-name">Assat</p>
-						</div>
-						<div class="score">
-							<p class="total-score">4 - 1</p>
-						</div>
-						<div class="game-team">
-							<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-							<p class="team-name">Assat</p>
-						</div>
-					</div>
 
-				</div>
+				<%= request.getAttribute("team_schedule") %>
+
+
 
 				<div>
 					<a href="" class="anchor">
@@ -151,11 +103,7 @@
 					<p>SEE STANDINGS WITH MORE DETAILS</p>
 				</a>
 			</div>
-
-
 			<% String str;%>
-
-
 			<!--Teams-->
 		</div>
 
