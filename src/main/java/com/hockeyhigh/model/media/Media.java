@@ -10,14 +10,16 @@ public class Media {
     private String header;
     private MediaType type;
     private String poster_url;
+    private String creation_date;
 
     public Media(){}
-    public Media(long id, String url, String header, MediaType type, String poster_url) {
+    public Media(long id, String url, String header, MediaType type, String poster_url, String creation_date) {
         this.id = id;
         this.url = url;
         this.header = header;
         this.type = type;
         this.poster_url = poster_url;
+        this.creation_date = creation_date;
     }
     public Media(ResultSet rs) {
         try{
@@ -26,6 +28,7 @@ public class Media {
             this.header = rs.getString("header");
             this.type = MediaType.valueOf(rs.getString("type"));
             this.poster_url = rs.getString("poster_url");
+            this.creation_date = rs.getString("creation_date");
         }
         catch(Exception ex) {
             System.out.println("Exception in rs media constructor");
@@ -51,4 +54,8 @@ public class Media {
     public void setType(MediaType type) { this.type = type; }
 
     public void setPoster_url(String poster_url) { this.poster_url = poster_url; }
+
+    public String getCreation_date() { return creation_date; }
+
+    public void setCreation_date(String creation_date) { this.creation_date = creation_date; }
 }

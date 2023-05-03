@@ -89,55 +89,26 @@ public class HTMLUtil {
         return builder.toString();
     }
 
-    public static String getTopStats(List<ShortSkaterDTO> list, Position position) {
+    public static String getTopStats(List<ShortSkaterDTO> list) {
         StringBuilder builder = new StringBuilder();
-        if(position == Position.FORWARD || position == Position.DEFENDER) {
-            builder.append("<div class=\"players-stats\">\n" +
-                    "\t\t\t\t\t<p class=\"points-title\">Points</p>\n" +
-                    "\n" +
-                    "\t\t\t\t\t<div class=\"tournament-selection\">\n" +
-                    "\t\t\t\t\t\t<button class=\"tournament\">REGULAR SEASON</button>\n" +
-                    "\t\t\t\t\t</div>\n" +
-                    "\n" +
-                    "\t\t\t\t\t<div class=\"stat-selection\">\n" +
-                    "\t\t\t\t\t\t<button class=\"stat-selection-el\">ALL</button>\n" +
-                    "\t\t\t\t\t\t<button class=\"stat-selection-el\">DEFENSMAN</button>\n" +
-                    "\t\t\t\t\t\t<button class=\"stat-selection-el\">ROOKIES</button>\n" +
-                    "\t\t\t\t\t</div>");
-        }
-        if(position == Position.GOALIE) {
-            builder.append("<div class=\"goalies-stats\">\n" +
-                    "\t\t\t\t\t<p class=\"other-stats\">Goalies</p>\n" +
-                    "\n" +
-                    "\t\t\t\t\t<div class=\"tournament-selection\">\n" +
-                    "\t\t\t\t\t\t<button class=\"tournament\" onload=\"active\">REGULAR SEASON</button>\n" +
-                    "\t\t\t\t\t</div>\n" +
-                    "\n" +
-                    "\t\t\t\t\t<div class=\"stat-selection\">\n" +
-                    "\t\t\t\t\t\t<button class=\"stat-selection-el\">GAA</button>\n" +
-                    "\t\t\t\t\t\t<button class=\"stat-selection-el\">SAVES%</button>\n" +
-                    "\t\t\t\t\t\t<button class=\"stat-selection-el\">SHUTOUTS</button>\n" +
-                    "\t\t\t\t\t</div>");
-        }
 
         if(list.size() > 0){
             ShortSkaterDTO topPlayer = list.get(0);
-            builder.append("<div class=\"top-player-el\">\n" +
+
+            builder.append("<div class=\"top-player-container\">\n" +
+                    "\t\t\t\t\t\t<div class=\"top-player-el\">\n" +
                     "\t\t\t\t\t\t\t<img src=\"" + topPlayer.getPhoto_url() + "\" alt=\"\" class=\"player-photo\">\n" +
                     "\t\t\t\t\t\t\t<div class=\"player-info\">\n" +
                     "\t\t\t\t\t\t\t\t<div class=\"player-info-el\">\n" +
                     "\t\t\t\t\t\t\t\t\t<img src=\"" + topPlayer.getTeam_logo() + "\" style =\"height:30px; width:40px;\" alt=\"\">\n" +
                     "\t\t\t\t\t\t\t\t\t<p class=\"player-name\">" + topPlayer.getPlayer_name() + "</p>\n" +
-                    "\n" +
                     "\t\t\t\t\t\t\t\t</div>\n" +
                     "\t\t\t\t\t\t\t\t<div class=\"player-info-el\">\n" +
                     "\t\t\t\t\t\t\t\t\t<div class=\"player-name\">Points: " + topPlayer.getGoals() + " + " + topPlayer.getAssists() + "=" + (topPlayer.getGoals()+topPlayer.getAssists()) + "</div>\n" +
                     "\t\t\t\t\t\t\t\t</div>\n" +
-                    "\n" +
-                    "\n" +
                     "\t\t\t\t\t\t\t</div>\n" +
-                    "\n" +
                     "\t\t\t\t\t\t</div>");
+
 
             for(ShortSkaterDTO skater : list) {
                 builder.append("<div class=\"top-player-list\">\n" +
@@ -154,3 +125,28 @@ public class HTMLUtil {
         return builder.toString();
     }
 }
+
+/*
+<div class="top-player-container">
+						<div class="top-player-el">
+							<img src="../images/joly.png" alt="" class="player-photo">
+							<div class="player-info">
+								<div class="player-info-el">
+									<img src="../images/vaasan-sport-sm.png" style ="height:30px; width:40px;" alt="">
+									<p class="player-name">Michael Joly</p>
+								</div>
+								<div class="player-info-el">
+									<div class="player-name">Points: 3+9=12</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="top-player-list">
+							<div class="top-player-list-el">
+								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
+								<span class="player-name">Michael Joly</span>
+								<span class="points">5+4=9</span>
+							</div>
+						</div>
+					</div>
+* */

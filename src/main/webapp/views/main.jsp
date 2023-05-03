@@ -217,7 +217,7 @@
 			</div>
 
 			<!--Players Stats Container-->
-			<div class="players-stats-container">
+			<div class="players-stats-container"  >
 
 				<div class="players-stats">
 					<p class="points-title">Points</p>
@@ -232,35 +232,16 @@
 						<button class="stat-selection-el">ROOKIES</button>
 					</div>
 
-					<div class="top-player-container">
 
 
-						<div class="top-player-el">
-							<img src="../images/joly.png" alt="" class="player-photo">
-							<div class="player-info">
-								<div class="player-info-el">
-									<img src="../images/vaasan-sport-sm.png" style ="height:30px; width:40px;" alt="">
-									<p class="player-name">Michael Joly</p>
-
-								</div>
-								<div class="player-info-el">
-									<div class="player-name">Points: 3+9=12</div>
-								</div>
 
 
-							</div>
+					<%= request.getAttribute("top_stats")%>
 
-						</div>
 
-						<div class="top-player-list">
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-						</div>
 
-					</div>
+
+
 
 				</div>
 

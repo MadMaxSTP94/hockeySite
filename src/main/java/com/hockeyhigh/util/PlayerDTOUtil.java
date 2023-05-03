@@ -18,43 +18,73 @@ import com.hockeyhigh.model.statistics.SkaterStats;
 import com.hockeyhigh.model.team.Team;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class PlayerDTOUtil {
-    public static List<ShortSkaterDTO> getShortPlayerDTO() {
+    public static List<ShortSkaterDTO> getShortPlayerDTO(Season season) {
         List<ShortSkaterDTO> skaterDTOList = new ArrayList<>();
 
         PlayerDAO playerDAO = PlayerDAO.getInstance();
         List<Player> players = playerDAO.getAll();
 
-        SkaterStatsDAO skaterStatsDAO = SkaterStatsDAO.getInstance();
-        List<SkaterStats> skaterStats = skaterStatsDAO.getAll();
-
-        TeamDAO teamDAO = TeamDAO.getInstance();
-        List<Team> teams = teamDAO.getAll();
-
-
         for(Player player : players) {
-            if(player.getPosition() == Position.DEFENDER || player.getPosition() == Position.FORWARD) {
-                Team team = getTeamByPlayerId(player.getId());
-                ShortSkaterDTOBuilder shortSkaterDTOBuilder = new ShortSkaterDTOBuilder();
-                shortSkaterDTOBuilder.setPlayerName(player.getName());
-                shortSkaterDTOBuilder.setPhotoUrl(player.getPhoto_url());
-                shortSkaterDTOBuilder.setPosition(player.getPosition());
-                shortSkaterDTOBuilder.setTeamLogo(team.getLogo_url());
-
-
+            if(player.getPosition() != Position.GOALIE) {
+                ShortSkaterDTO shortSkaterDTO = generateSSkaterDTO(player, season);
+                skaterDTOList.add(shortSkaterDTO);
             }
-
         }
-        return  null;
+        return  skaterDTOList;
+    }
+
+    public static List<ShortSkaterDTO> getRookieSkaterDTO(Season season) {
+        List<ShortSkaterDTO> skaterDTOList = new ArrayList<>();
+        PlayerDAO playerDAO = PlayerDAO.getInstance();
+        List<Player> players = playerDAO.getAll();
+        for(Player player : players) {
+            if(player.getPosition() != Position.GOALIE && player.getAge() < 20) {
+                ShortSkaterDTO shortSkaterDTO = generateSSkaterDTO(player, season);
+                skaterDTOList.add(shortSkaterDTO);
+            }
+        }
+        return  skaterDTOList;
+    }
+
+    public static List<ShortSkaterDTO> getDefencemanDTO(Season season) {
+        List<ShortSkaterDTO> skaterDTOList = new ArrayList<>();
+        PlayerDAO playerDAO = PlayerDAO.getInstance();
+        List<Player> players = playerDAO.getAll();
+        for(Player player : players) {
+            if(player.getPosition() == Position.DEFENDER) {
+                ShortSkaterDTO shortSkaterDTO = generateSSkaterDTO(player, season);
+                skaterDTOList.add(shortSkaterDTO);
+            }
+        }
+        return  skaterDTOList;
+    }
+
+    public static ShortSkaterDTO generateSSkaterDTO(Player player, Season season) {
+        SkaterStats skaterStats = generateSkaterStats(getSkaterStats(player.getId(), season));
+        Team team = getTeamByPlayerId(player.getId());
+        ShortSkaterDTOBuilder shortSkaterDTOBuilder = new ShortSkaterDTOBuilder();
+
+        if(team != null) shortSkaterDTOBuilder.setTeamLogo(team.getLogo_url());
+
+        shortSkaterDTOBuilder.setPlayerName(player.getName());
+        shortSkaterDTOBuilder.setPhotoUrl(player.getPhoto_url());
+        shortSkaterDTOBuilder.setPosition(player.getPosition());
+
+        if(skaterStats != null) {
+            shortSkaterDTOBuilder.setGoals(skaterStats.getGoals());
+            shortSkaterDTOBuilder.setAssists(skaterStats.getAssists());
+        }
+
+        return shortSkaterDTOBuilder.build();
+
     }
 
     public static List<SkaterStats> getSkaterStats(long player_id, Season season) {
-
         PlayerStatsDAO playerStatsDAO = PlayerStatsDAO.getInstance();
         List<PlayerStats> playerStats = playerStatsDAO.getAll()
                                                       .stream()
@@ -64,7 +94,6 @@ public class PlayerDTOUtil {
         playerStats.sort(new PlayerStatsComparator());
 
         SkaterStatsDAO skaterStatsDAO = SkaterStatsDAO.getInstance();
-
         List<SkaterStats> team_stats = new ArrayList<>();
         List<SkaterStats> teams_skaters_stats = new ArrayList<>();
 
@@ -88,14 +117,10 @@ public class PlayerDTOUtil {
             teams_skaters_stats.add(generateSkaterStats(team_stats));
             team_stats.clear();
         }
-
-
-
         return teams_skaters_stats;
     }
 
     public static List<GoalieStats> getGoalieStats(long player_id, Season season) {
-
         PlayerStatsDAO playerStatsDAO = PlayerStatsDAO.getInstance();
         List<PlayerStats> playerStats = playerStatsDAO.getAll()
                 .stream()
@@ -105,7 +130,6 @@ public class PlayerDTOUtil {
         playerStats.sort(new PlayerStatsComparator());
 
         GoalieStatsDAO skaterStatsDAO = GoalieStatsDAO.getInstance();
-
         List<GoalieStats> team_stats = new ArrayList<>();
         List<GoalieStats> teams_skaters_stats = new ArrayList<>();
 
@@ -123,13 +147,11 @@ public class PlayerDTOUtil {
             GoalieStats skaterStats = skaterStatsDAO.get(stat.getId());
             team_stats.add(skaterStats);
         }
-
         if(team_stats.size() == 1 && team_stats.get(0) == null) return null;
         if(team_stats.size() > 0) {
             teams_skaters_stats.add(generateGoalieStats(team_stats));
             team_stats.clear();
         }
-
         return teams_skaters_stats;
     }
 
@@ -174,7 +196,9 @@ public class PlayerDTOUtil {
 
     public static Team getTeamByPlayerId(long player_id) {
         PlayerStatsDAO playerStatsDAO = PlayerStatsDAO.getInstance();
-        return  playerStatsDAO.get(player_id).getTeam(); //последняя запись в статистике
+        PlayerStats stats = playerStatsDAO.get(player_id);
+        if(stats == null) return null;
+        return  stats.getTeam(); //последняя запись в статистике
     }
 
 }

@@ -6,6 +6,7 @@ import com.hockeyhigh.dao.statsDAO.PlayerStatsDAO;
 import com.hockeyhigh.dao.statsDAO.SkaterStatsDAO;
 import com.hockeyhigh.dao.statsDAO.TeamStatsDAO;
 import com.hockeyhigh.dto.GameDTO;
+import com.hockeyhigh.dto.ShortSkaterDTO;
 import com.hockeyhigh.dto.team.HighlightTeamStatsDTO;
 import com.hockeyhigh.dto.team.ShortTeamGameDTO;
 import com.hockeyhigh.model.enums.Season;
@@ -125,6 +126,8 @@ public class TestFile {
         //playerStatsDAO.save(skaterStats);
         List<SkaterStats> stats = PlayerDTOUtil.getSkaterStats(1,Season._22_23);
         List<GoalieStats> gstats = PlayerDTOUtil.getGoalieStats(1, Season._22_23);
+
+        List<ShortSkaterDTO> list =  PlayerDTOUtil.getShortPlayerDTO(Season._22_23);
         System.out.println("Well done!");
 
     }
