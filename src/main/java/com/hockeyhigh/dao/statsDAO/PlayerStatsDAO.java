@@ -16,8 +16,8 @@ public class PlayerStatsDAO implements DAO<PlayerStats> {
     private static PlayerStatsDAO instance;
 
     private static final String ALL_PLAYER_STATS = "select * from player_stats;";
-    private static final String GET_PLAYER_STATS = "select * from player_stats where id =? ;";
-    private static final String DELETE_PLAYER_STATS = "delete from player_stats where id =?;";
+    private static final String GET_PLAYER_STATS = "select * from player_stats where player_id =? ;";
+    private static final String DELETE_PLAYER_STATS = "delete from player_stats where player_id =?;";
     private static final String INSERT_PLAYER_STATS = "insert into player_stats(player_id,game_id,total_ice_time,season,team_id) values(?,?,?,?,?);";
     private static final String UPDATE_PLAYER_STATS = "update player_stats set player_id = ?,game_id = ?, total_ice_time = ?,season = ?, team_id =? where id = ?";
 

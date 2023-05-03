@@ -56,4 +56,5 @@ public class PlayerStats {
                 StringUtil.convertToDb(total_ice_time) + "," + StringUtil.convertToDb(season.toString()) +
                 "," + team.getId();
     }
+
 }

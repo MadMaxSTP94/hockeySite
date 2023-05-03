@@ -2,15 +2,20 @@ package com.hockeyhigh.test;
 
 import com.hockeyhigh.dao.entityDAO.GameDAO;
 import com.hockeyhigh.dao.entityDAO.TeamDAO;
+import com.hockeyhigh.dao.statsDAO.PlayerStatsDAO;
+import com.hockeyhigh.dao.statsDAO.SkaterStatsDAO;
 import com.hockeyhigh.dao.statsDAO.TeamStatsDAO;
 import com.hockeyhigh.dto.GameDTO;
 import com.hockeyhigh.dto.team.HighlightTeamStatsDTO;
 import com.hockeyhigh.dto.team.ShortTeamGameDTO;
 import com.hockeyhigh.model.enums.Season;
 import com.hockeyhigh.model.game.Game;
+import com.hockeyhigh.model.statistics.GoalieStats;
+import com.hockeyhigh.model.statistics.SkaterStats;
 import com.hockeyhigh.model.statistics.TeamStats;
 import com.hockeyhigh.model.team.Team;
 import com.hockeyhigh.util.GameDTOUtil;
+import com.hockeyhigh.util.PlayerDTOUtil;
 import com.hockeyhigh.util.TeamDTOUtil;
 
 import java.io.IOException;
@@ -111,8 +116,15 @@ public class TestFile {
         //teamStatsDAO.delete(stats);
         TeamStats teamStats = TeamDTOUtil.getSumOfEachStat(teamStatsList);
         HighlightTeamStatsDTO highlightTeamStatsDTO = TeamDTOUtil.generateTeamDTO(team1, teamStats);*/
-        List<HighlightTeamStatsDTO> list = TeamDTOUtil.getTeamDTO(Season._20_21);
-        List<GameDTO> gameDTOS = GameDTOUtil.getSchedule();
+        //List<HighlightTeamStatsDTO> list = TeamDTOUtil.getTeamDTO(Season._20_21);
+        //List<GameDTO> gameDTOS = GameDTOUtil.getSchedule();
+
+        SkaterStatsDAO playerStatsDAO = SkaterStatsDAO.getInstance();
+        SkaterStats skaterStats = playerStatsDAO.get(2);
+        //skaterStats.setPlayer_stats_id(1);
+        //playerStatsDAO.save(skaterStats);
+        List<SkaterStats> stats = PlayerDTOUtil.getSkaterStats(1,Season._22_23);
+        List<GoalieStats> gstats = PlayerDTOUtil.getGoalieStats(1, Season._22_23);
         System.out.println("Well done!");
 
     }

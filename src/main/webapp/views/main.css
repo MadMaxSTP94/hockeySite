@@ -311,7 +311,7 @@ html, body {
 
 .video-img:hover {
     scale: 1.05;
-
+    overflow:hidden;
 }
 
 
@@ -463,6 +463,12 @@ html, body {
 
 }
 
+.player-info-el{
+    margin-top:10px;
+    display:flex;
+
+}
+
 
 
 .top-player-container {
@@ -550,6 +556,8 @@ html, body {
     justify-content: center;
     opacity:6;
 }
+
+
 
 .team-standings {
     margin-top: 25px;

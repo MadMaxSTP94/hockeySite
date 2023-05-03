@@ -1,7 +1,10 @@
 package com.hockeyhigh.util;
 
 import com.hockeyhigh.dto.GameDTO;
+import com.hockeyhigh.dto.ShortSkaterDTO;
 import com.hockeyhigh.dto.team.HighlightTeamStatsDTO;
+import com.hockeyhigh.model.enums.Position;
+import com.hockeyhigh.model.statistics.PlayerStats;
 
 import java.util.List;
 
@@ -86,5 +89,68 @@ public class HTMLUtil {
         return builder.toString();
     }
 
+    public static String getTopStats(List<ShortSkaterDTO> list, Position position) {
+        StringBuilder builder = new StringBuilder();
+        if(position == Position.FORWARD || position == Position.DEFENDER) {
+            builder.append("<div class=\"players-stats\">\n" +
+                    "\t\t\t\t\t<p class=\"points-title\">Points</p>\n" +
+                    "\n" +
+                    "\t\t\t\t\t<div class=\"tournament-selection\">\n" +
+                    "\t\t\t\t\t\t<button class=\"tournament\">REGULAR SEASON</button>\n" +
+                    "\t\t\t\t\t</div>\n" +
+                    "\n" +
+                    "\t\t\t\t\t<div class=\"stat-selection\">\n" +
+                    "\t\t\t\t\t\t<button class=\"stat-selection-el\">ALL</button>\n" +
+                    "\t\t\t\t\t\t<button class=\"stat-selection-el\">DEFENSMAN</button>\n" +
+                    "\t\t\t\t\t\t<button class=\"stat-selection-el\">ROOKIES</button>\n" +
+                    "\t\t\t\t\t</div>");
+        }
+        if(position == Position.GOALIE) {
+            builder.append("<div class=\"goalies-stats\">\n" +
+                    "\t\t\t\t\t<p class=\"other-stats\">Goalies</p>\n" +
+                    "\n" +
+                    "\t\t\t\t\t<div class=\"tournament-selection\">\n" +
+                    "\t\t\t\t\t\t<button class=\"tournament\" onload=\"active\">REGULAR SEASON</button>\n" +
+                    "\t\t\t\t\t</div>\n" +
+                    "\n" +
+                    "\t\t\t\t\t<div class=\"stat-selection\">\n" +
+                    "\t\t\t\t\t\t<button class=\"stat-selection-el\">GAA</button>\n" +
+                    "\t\t\t\t\t\t<button class=\"stat-selection-el\">SAVES%</button>\n" +
+                    "\t\t\t\t\t\t<button class=\"stat-selection-el\">SHUTOUTS</button>\n" +
+                    "\t\t\t\t\t</div>");
+        }
 
+        if(list.size() > 0){
+            ShortSkaterDTO topPlayer = list.get(0);
+            builder.append("<div class=\"top-player-el\">\n" +
+                    "\t\t\t\t\t\t\t<img src=\"" + topPlayer.getPhoto_url() + "\" alt=\"\" class=\"player-photo\">\n" +
+                    "\t\t\t\t\t\t\t<div class=\"player-info\">\n" +
+                    "\t\t\t\t\t\t\t\t<div class=\"player-info-el\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<img src=\"" + topPlayer.getTeam_logo() + "\" style =\"height:30px; width:40px;\" alt=\"\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<p class=\"player-name\">" + topPlayer.getPlayer_name() + "</p>\n" +
+                    "\n" +
+                    "\t\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t\t<div class=\"player-info-el\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<div class=\"player-name\">Points: " + topPlayer.getGoals() + " + " + topPlayer.getAssists() + "=" + (topPlayer.getGoals()+topPlayer.getAssists()) + "</div>\n" +
+                    "\t\t\t\t\t\t\t\t</div>\n" +
+                    "\n" +
+                    "\n" +
+                    "\t\t\t\t\t\t\t</div>\n" +
+                    "\n" +
+                    "\t\t\t\t\t\t</div>");
+
+            for(ShortSkaterDTO skater : list) {
+                builder.append("<div class=\"top-player-list\">\n" +
+                        "\t\t\t\t\t\t\t<div class=\"top-player-list-el\">\n" +
+                        "\t\t\t\t\t\t\t\t<img src=\"" + skater.getTeam_logo() + "\" alt=\"\" class=\"team-logo\">\n" +
+                        "\t\t\t\t\t\t\t\t<span class=\"player-name\">" + skater.getPlayer_name() + "</span>\n" +
+                        "\t\t\t\t\t\t\t\t<span class=\"points\">" + topPlayer.getGoals() + " + " + topPlayer.getAssists() + "=" + (topPlayer.getGoals()+topPlayer.getAssists()) + "</span>\n" +
+                        "\t\t\t\t\t\t\t</div>\n" +
+                        "\t\t\t\t\t\t</div>");
+            }
+        }
+
+        builder.append("</div>");
+        return builder.toString();
+    }
 }

@@ -206,6 +206,7 @@
 
 		<!--Players Stats Block-->
 		<div class="div-players-stats">
+
 			<div class="players-stats-info">
 				<div class="players-stats-el">
 					<p class="stats-title">PLAYERS STATS</p>
@@ -222,7 +223,6 @@
 					<p class="points-title">Points</p>
 
 					<div class="tournament-selection">
-						<button class="tournament">PLAYOFFS</button>
 						<button class="tournament">REGULAR SEASON</button>
 					</div>
 
@@ -233,70 +233,26 @@
 					</div>
 
 					<div class="top-player-container">
+
+
 						<div class="top-player-el">
 							<img src="../images/joly.png" alt="" class="player-photo">
 							<div class="player-info">
 								<div class="player-info-el">
 									<img src="../images/vaasan-sport-sm.png" style ="height:30px; width:40px;" alt="">
-									<p class="player-number">#20</p>
+									<p class="player-name">Michael Joly</p>
+
 								</div>
 								<div class="player-info-el">
-									<p class="player-name"></p>
+									<div class="player-name">Points: 3+9=12</div>
 								</div>
-								<div class="player-info-el"></div>
+
 
 							</div>
-							<div class="player-stats">
-								<p class="points-label">Points</p>
-								<p class="points-total">5+2=7</p>
-							</div>
+
 						</div>
+
 						<div class="top-player-list">
-							<div id="testId" class="top-player-list-el">
-								<img src=<%="views/" + media.getUrl()%> alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points"><%= media.getUrl() %></span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
 							<div class="top-player-list-el">
 								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
 								<span class="player-name">Michael Joly</span>
@@ -311,11 +267,11 @@
 				<!--Separation-->
 
 				<div class="goalies-stats">
+
 					<p class="other-stats">Goalies</p>
 
 					<div class="tournament-selection">
-						<button class="tournament">PLAYOFFS</button>
-						<button class="tournament">REGULAR SEASON</button>
+						<button class="tournament" onload="active">REGULAR SEASON</button>
 					</div>
 
 					<div class="stat-selection">
@@ -403,6 +359,12 @@
 
 			</div>
 			<!--Players Stats Block-->
+
+
+
+
+
+
 
 			<!--News-->
 			<div class="main-news-block">

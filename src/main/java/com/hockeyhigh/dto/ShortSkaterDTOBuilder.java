@@ -1,14 +1,22 @@
 package com.hockeyhigh.dto;
 
+import com.hockeyhigh.model.enums.Position;
+
 public class ShortSkaterDTOBuilder {
     private String photo_url;
     private String player_name;
     private String team_logo;
+    private Position position;
     private int goals;
     private int assists;
 
     public ShortSkaterDTOBuilder setPhotoUrl(String photo_url) {
         this.photo_url = photo_url;
+        return this;
+    }
+
+    public ShortSkaterDTOBuilder setPosition(Position position) {
+        this.position = position;
         return this;
     }
 
@@ -31,6 +39,8 @@ public class ShortSkaterDTOBuilder {
         this.assists = assists;
         return this;
     }
+
+    public Position getPosition() { return position; }
 
     public String getPhoto_url() { return photo_url; }
 

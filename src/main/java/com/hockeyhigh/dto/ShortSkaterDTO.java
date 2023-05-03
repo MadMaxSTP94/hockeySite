@@ -1,9 +1,12 @@
 package com.hockeyhigh.dto;
 
+import com.hockeyhigh.model.enums.Position;
+
 public class ShortSkaterDTO {
     private String photo_url;
     private String player_name;
     private String team_logo;
+    private Position position;
     private int goals;
     private int assists;
 
@@ -13,6 +16,7 @@ public class ShortSkaterDTO {
         this.team_logo = shortSkaterDTOBuilder.getTeam_logo();
         this.goals = shortSkaterDTOBuilder.getGoals();
         this.assists = shortSkaterDTOBuilder.getAssists();
+        this.position = shortSkaterDTOBuilder.getPosition();
     }
 
     public String getPhoto_url() { return photo_url; }
@@ -24,4 +28,6 @@ public class ShortSkaterDTO {
     public String getTeam_logo() { return team_logo; }
 
     public int getAssists() { return assists; }
+
+    public Position getPosition() { return position; }
 }

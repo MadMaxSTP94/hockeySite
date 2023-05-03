@@ -138,6 +138,10 @@ public class SkaterStats extends PlayerStats {
         this.face_offs_wins = face_offs_wins;
     }
 
+    public void setPlayer_stats_id(long player_stats_id) {
+        this.player_stats_id = player_stats_id;
+    }
+
     public String toString() {
         return  player_stats_id + "," + goals + "," + assists + "," +
                 penalty_minutes + "," + plus_minus + "," + short_handed_goals + "," +

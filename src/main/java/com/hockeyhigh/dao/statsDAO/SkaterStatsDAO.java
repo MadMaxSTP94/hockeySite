@@ -16,8 +16,8 @@ public class SkaterStatsDAO implements DAO<SkaterStats> {
     private static SkaterStatsDAO instance;
 
     private static final String ALL_SKATER_STATS = "select * from skater_stats;";
-    private static final String GET_SKATER_STATS = "select * from skater_stats where id =? ;";
-    private static final String DELETE_SKATER_STATS = "delete from skater_stats where id =?;";
+    private static final String GET_SKATER_STATS = "select * from skater_stats where player_stats_id =? ;";
+    private static final String DELETE_SKATER_STATS = "delete from skater_stats where player_stats_id =?;";
     private static final String INSERT_SKATER_STATS = "insert into skater_stats(player_stats_id,goals,assists,penalty_minutes," +
                                                       "plus_minus,short_handed_goals,power_play_goals,game_winning_goals,shots_made," +
                                                       "face_offs_count,face_offs_wins) values(?,?,?,?,?,?,?,?,?,?,?);";
