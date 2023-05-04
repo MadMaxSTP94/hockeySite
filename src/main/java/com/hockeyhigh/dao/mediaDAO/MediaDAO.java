@@ -1,6 +1,7 @@
 package com.hockeyhigh.dao.mediaDAO;
 
 import com.hockeyhigh.dao.DAO;
+import com.hockeyhigh.model.enums.MediaType;
 import com.hockeyhigh.model.media.Media;
 import com.hockeyhigh.util.DBUtil;
 
@@ -16,12 +17,33 @@ public class MediaDAO implements DAO<Media> {
 
     private static final String ALL_MEDIA = "select * from media;";
     private static final String GET_MEDIA = "select * from media where id =? ;";
+    private static final String GET_TYPE = "select * from media where type =? limit ?";
     private static final String DELETE_MEDIA = "delete from media where id =?;";
     private static final String INSERT_MEDIA = "insert into media(url,header,type,poster_url) values(?,?,?,?);";
     private static final String UPDATE_MEDIA = "update media set url = ?,header = ?, type = ?,poster_url = ? where id = ?";
 
     private MediaDAO() {}
 
+    public List<Media> getAll(MediaType type, int limit) {
+        List<Media> medias = null;
+        try{
+            Connection connection = DBUtil.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement(GET_TYPE);
+            statement.setString(1,type.toString());
+            statement.setInt(2,limit);
+            ResultSet rs = statement.executeQuery();
+            medias = new ArrayList<>();
+
+            while(rs.next()) {
+                Media media = new Media(rs);
+                medias.add(media);
+            }
+        }
+        catch(Exception ex) {
+            System.out.println("Didn't connect to database! From mediaDao getAll()");
+        }
+        return medias;
+    }
     @Override
     public Media get(long id) {
         Media media = null;

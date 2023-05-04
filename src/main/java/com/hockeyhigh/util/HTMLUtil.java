@@ -1,10 +1,16 @@
 package com.hockeyhigh.util;
 
+import com.hockeyhigh.dao.entityDAO.TeamDAO;
+import com.hockeyhigh.dao.statsDAO.PlayerStatsDAO;
 import com.hockeyhigh.dto.GameDTO;
 import com.hockeyhigh.dto.ShortSkaterDTO;
 import com.hockeyhigh.dto.team.HighlightTeamStatsDTO;
+import com.hockeyhigh.model.builders.TeamBuilder;
 import com.hockeyhigh.model.enums.Position;
+import com.hockeyhigh.model.media.Media;
+import com.hockeyhigh.model.player.Player;
 import com.hockeyhigh.model.statistics.PlayerStats;
+import com.hockeyhigh.model.team.Team;
 
 import java.util.List;
 
@@ -124,29 +130,116 @@ public class HTMLUtil {
         builder.append("</div>");
         return builder.toString();
     }
+
+    public static String getNewsTop(Media media) {
+        return new StringBuilder("<a href=\"\" class=\"anchor\">\n" +
+                "\t\t\t\t<div class=\"news-div-top\" style=\"background-image: linear-gradient(180deg, transparent ,rgba(0,0,0,0.8)), url("+media.getUrl()+")\">\n" +
+                "\t\t\t\t\t<p class=\"news-header\">NEWS</p>\n" +
+                "\t\t\t\t\t<p class=\"news-highlight\">"+ media.getHeader() +"</p>\n" +
+                "\t\t\t\t\t<p class=\"news-date\">"+ media.getCreation_date() +"</p>\n" +
+                "\t\t\t\t</div>\n" +
+                "\t\t\t</a>").toString();
+    }
+
+    public static String getNewsTopRights(Media media) {
+        return new StringBuilder("<div class=\"news-div-top-right\" style=\"background-image: linear-gradient(180deg, transparent ,rgba(0,0,0,0.8)), url("+media.getUrl()+")\">\n" +
+                "\t\t\t\t\t<a href=\"\" class=\"anchor\">\n" +
+                "\t\t\t\t\t\t<p class=\"news-header\">NEWS</p>\n" +
+                "\t\t\t\t\t\t<p class=\"news-highlight\">"+media.getHeader()+"</p>\n" +
+                "\t\t\t\t\t\t<p class=\"news-date\">"+media.getCreation_date()+"</p>\n" +
+                "\t\t\t\t\t</a>\n" +
+                "\t\t\t\t</div>").toString();
+    }
+
+    public static String getNewsTopOther(List<Media> media) {
+        return new StringBuilder("<div class=\"news-other\">\n" +
+                "\t\t\t\t\t<div class=\"news-div\" style=\"background-image: linear-gradient(180deg, transparent ,rgba(0,0,0,0.8)), url("+media.get(0).getUrl()+")\">\n" +
+                "\t\t\t\t\t\t<a href=\"\" class=\"anchor\">\n" +
+                "\t\t\t\t\t\t\t<p class=\"news-header\">NEWS</p>\n" +
+                "\t\t\t\t\t\t\t<p class=\"news-highlight\">"+media.get(0).getHeader()+"</p>\n" +
+                "\t\t\t\t\t\t\t<p class=\"news-date\">"+media.get(0).getCreation_date()+"</p>\n" +
+                "\t\t\t\t\t\t</a>\n" +
+                "\t\t\t\t\t</div>\n" +
+                "\t\t\t\t\t<div class=\"news-div\" style=\"background-image: linear-gradient(180deg, transparent ,rgba(0,0,0,0.8)), url("+media.get(1).getUrl()+")\">\n" +
+                "\t\t\t\t\t\t<a href=\"\" class=\"anchor\">\n" +
+                "\t\t\t\t\t\t\t<p class=\"news-header\">NEWS</p>\n" +
+                "\t\t\t\t\t\t\t<p class=\"news-highlight\">"+media.get(1).getHeader()+"</p>\n" +
+                "\t\t\t\t\t\t\t<p class=\"news-date\">"+media.get(1).getCreation_date()+"</p>\n" +
+                "\t\t\t\t\t\t</a>\n" +
+                "\t\t\t\t\t</div>\n" +
+                "\t\t\t\t</div>").toString();
+    }
+    //добавить id
+    public static String getMediaRow(List<Media> media) {
+        StringBuilder stringBuilder = new StringBuilder("<div class=\"videos-list\">");
+        for(Media med : media) {
+            stringBuilder.append("<div class=\"video\">\n" +
+                    "\t\t\t\t\t\t<a href=\"handler.java\" class=\"anchor\">\n" +
+                    "\t\t\t\t\t\t\t<img src=\""+med.getUrl()+"\" alt=\"\" class=\"video-img\">\n" +
+                    "\t\t\t\t\t\t\t<span class=\"video-description\">"+med.getHeader()+"</span>\n" +
+                    "\t\t\t\t\t\t</a>\n" +
+                    "\t\t\t\t\t\t<span  class=\"video-date\">"+med.getCreation_date()+"</span>\n" +
+                    "\t\t\t\t\t</div>");
+        }
+        return stringBuilder.append("</div>").toString();
+    }
+    //добавить скрытие новостей
+    public static String getMediaRows(List<Media> media) {
+        StringBuilder stringBuilder = new StringBuilder("<div class=\"news-list\">");
+        for(Media med : media) {
+            stringBuilder.append("<div class=\"news\">\n" +
+                    "\t\t\t\t\t\t<a href=\"handler.java\" class=\"anchor\">\n" +
+                    "\t\t\t\t\t\t\t<img src=\""+med.getUrl()+"\" alt=\"\" class=\"video-img\">\n" +
+                    "\t\t\t\t\t\t\t<span class=\"news-description\">"+med.getHeader()+"</span>\n" +
+                    "\t\t\t\t\t\t</a>\n" +
+                    "\t\t\t\t\t\t<span  class=\"news-date\">"+med.getCreation_date()+"</span>\n" +
+                    "\t\t\t\t\t</div>");
+        }
+        return stringBuilder.append("</div>").toString();
+    }
+
+    public static String getPlayersRows(List<Player> players) {
+        StringBuilder builder = new StringBuilder();
+        PlayerStatsDAO playerStatsDAO = PlayerStatsDAO.getInstance();
+        TeamDAO teamDAO = TeamDAO.getInstance();
+        long team_id;
+        int counter = 1;
+        Team team;
+        for(Player player : players) {
+            if(counter % 2 != 0) {
+                builder.append("<tr class=\"stat\" id=\"nech\">\n");
+            }
+            if(counter % 2 == 0) {
+                builder.append("<tr class=\"stat\">\n");
+            }
+            team_id = playerStatsDAO.getTeamId(player.getId());
+            team = teamDAO.get(team_id);
+
+
+            if(team == null) {
+                team = new TeamBuilder().setName("-").setLogoUrl("https://liiga.fi/static/media/logo_liiga_small.85530e4269a1040069b7.webp").build();
+            }
+
+            builder.append("\t\t\t\t\t<td class=\"teams-table-column\">"+player.getName()+"</td>\n" +
+                    "\t\t\t\t\t<td class=\"teams-table-column\">\n" +
+                    "\t\t\t\t\t\t<div>\n" +
+                    "\t\t\t\t\t\t\t<img src=\""+ team.getLogo_url()+"\" alt=\"\" class=\"team-logo\">\n" +
+                    "\t\t\t\t\t\t\t<p class=\"team-name\">"+ team.getName()+"</p>\n" +
+                    "\t\t\t\t\t\t</div>\n" +
+                    "\n" +
+                    "\t\t\t\t\t</td>\n" +
+                    "\t\t\t\t\t<td class=\"teams-table-column\">"+player.getPlace_of_birth()+"</td>\n" +
+                    "\t\t\t\t\t<td class=\"teams-table-column\">"+player.getNationality()+"</td>\n" +
+                    "\t\t\t\t\t<td class=\"teams-table-column\">"+player.getAge()+"</td>\n" +
+                    "\t\t\t\t\t<td class=\"teams-table-column\">"+player.getHeight()+"</td>\n" +
+                    "\t\t\t\t\t<td class=\"teams-table-column\">"+player.getWeight()+"</td>\n" +
+                    "\t\t\t\t\t<td class=\"teams-table-column\">"+player.getShoots()+"</td>\n" +
+                    "\n" +
+                    "\t\t\t\t</tr>");
+            counter++;
+            team=null;
+
+        }
+        return builder.toString();
+    }
 }
-
-/*
-<div class="top-player-container">
-						<div class="top-player-el">
-							<img src="../images/joly.png" alt="" class="player-photo">
-							<div class="player-info">
-								<div class="player-info-el">
-									<img src="../images/vaasan-sport-sm.png" style ="height:30px; width:40px;" alt="">
-									<p class="player-name">Michael Joly</p>
-								</div>
-								<div class="player-info-el">
-									<div class="player-name">Points: 3+9=12</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="top-player-list">
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-						</div>
-					</div>
-* */

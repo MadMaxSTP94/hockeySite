@@ -1,7 +1,10 @@
 package com.hockeyhigh.test;
 
 import com.hockeyhigh.dao.entityDAO.GameDAO;
+import com.hockeyhigh.dao.entityDAO.PlayerDAO;
 import com.hockeyhigh.dao.entityDAO.TeamDAO;
+import com.hockeyhigh.dao.mediaDAO.ArticleDAO;
+import com.hockeyhigh.dao.mediaDAO.MediaDAO;
 import com.hockeyhigh.dao.statsDAO.PlayerStatsDAO;
 import com.hockeyhigh.dao.statsDAO.SkaterStatsDAO;
 import com.hockeyhigh.dao.statsDAO.TeamStatsDAO;
@@ -9,13 +12,17 @@ import com.hockeyhigh.dto.GameDTO;
 import com.hockeyhigh.dto.ShortSkaterDTO;
 import com.hockeyhigh.dto.team.HighlightTeamStatsDTO;
 import com.hockeyhigh.dto.team.ShortTeamGameDTO;
+import com.hockeyhigh.model.enums.MediaType;
 import com.hockeyhigh.model.enums.Season;
 import com.hockeyhigh.model.game.Game;
+import com.hockeyhigh.model.media.Media;
+import com.hockeyhigh.model.player.Player;
 import com.hockeyhigh.model.statistics.GoalieStats;
 import com.hockeyhigh.model.statistics.SkaterStats;
 import com.hockeyhigh.model.statistics.TeamStats;
 import com.hockeyhigh.model.team.Team;
 import com.hockeyhigh.util.GameDTOUtil;
+import com.hockeyhigh.util.HTMLUtil;
 import com.hockeyhigh.util.PlayerDTOUtil;
 import com.hockeyhigh.util.TeamDTOUtil;
 
@@ -124,10 +131,15 @@ public class TestFile {
         SkaterStats skaterStats = playerStatsDAO.get(2);
         //skaterStats.setPlayer_stats_id(1);
         //playerStatsDAO.save(skaterStats);
-        List<SkaterStats> stats = PlayerDTOUtil.getSkaterStats(1,Season._22_23);
-        List<GoalieStats> gstats = PlayerDTOUtil.getGoalieStats(1, Season._22_23);
+       // List<SkaterStats> stats = PlayerDTOUtil.getSkaterStats(1,Season._22_23);
+        //List<GoalieStats> gstats = PlayerDTOUtil.getGoalieStats(1, Season._22_23);
 
-        List<ShortSkaterDTO> list =  PlayerDTOUtil.getShortPlayerDTO(Season._22_23);
+        //List<ShortSkaterDTO> list =  PlayerDTOUtil.getShortPlayerDTO(Season._22_23);
+        MediaDAO mediaDAO = MediaDAO.getInstance();
+        List<Media> media = mediaDAO.getAll(MediaType.PHOTO,4);
+
+        List<Player> players = PlayerDAO.getInstance().getAll();
+        String str = HTMLUtil.getPlayersRows(players);
         System.out.println("Well done!");
 
     }

@@ -1,5 +1,6 @@
 com\hockeyhigh\test\TestClass.class
 com\hockeyhigh\dao\entityDAO\PlayerDAO.class
+com\hockeyhigh\controller\NewsController.class
 com\hockeyhigh\util\PlayerStatsComparator.class
 com\hockeyhigh\dto\GameDTO.class
 com\hockeyhigh\model\player\Player.class
@@ -51,5 +52,7 @@ com\hockeyhigh\model\builders\PlayerBuilder.class
 com\hockeyhigh\model\team\Team.class
 com\hockeyhigh\model\statistics\TeamStats.class
 com\hockeyhigh\model\builders\statsBuilder\PlayerStatsBuilder.class
+com\hockeyhigh\controller\PlayerController.class
 com\hockeyhigh\dao\statsDAO\GoalieStatsDAO.class
+com\hockeyhigh\controller\TeamController.class
 com\hockeyhigh\model\statistics\SkaterStats.class

@@ -19,21 +19,21 @@
 <body>
 <div class="parade-container">
 	<!--Команды-->
-	<div class="team hifk"><img src="/main/team-logos/hifk.png" alt="hifk" class="hifk"></div>
-	<div class="team hpk"><img src="/main/team-logos/hpk.png" alt="hpk" class="hifk"></div>
-	<div class="team ilves"><img src="/main/team-logos/ilves.png" alt="ilves" class="hifk"></div>
-	<div class="team jukurit"><img src="/main/team-logos/jukurit.png" alt="jukurit" class="hifk"></div>
-	<div class="team jyp"><img src="/main/team-logos/jyp.png" alt="jyp" class="jyp"></div>
-	<div class="team kalpa"><img src="/main/team-logos/kalpa.png" alt="kalpa" class="kalpa"></div>
-	<div class="team kookoo"><img src="/main/team-logos/kookoo.png" alt="kookoo" class="kookoo"></div>
-	<div class="team karpat"><img src="/main/team-logos/karpat.png" alt="karpat" class="hifk"></div>
-	<div class="team lukko"><img src="/main/team-logos/lukko.png" alt="lukko" class="hifk lukko"></div>
-	<div class="team pelicans"><img src="/main/team-logos/pelicans.png" alt="pelicans" class="hifk"></div>
-	<div class="team saipa"><img src="/main/team-logos/saipa.png" alt="saipa" class="hifk"></div>
-	<div class="team sport"><img src="/main/team-logos/sport.png" alt="sport" class="hifk"></div>
-	<div class="team tappara"><img src="/main/team-logos/tappara.png" alt="tappara" class="hifk"></div>
-	<div class="team tps"><img src="/main/team-logos/tps.png" alt="tps" class="hifk"></div>
-	<div class="team assat"><img src="/main/team-logos/assat.png" alt="assat" class="hifk"></div>
+	<div class="team hifk"><img src="team-logos/hifk.png" alt="hifk" class="hifk"></div>
+	<div class="team hpk"><img src="team-logos/hpk.png" alt="hpk" class="hifk"></div>
+	<div class="team ilves"><img src="team-logos/ilves.png" alt="ilves" class="hifk"></div>
+	<div class="team jukurit"><img src="team-logos/jukurit.png" alt="jukurit" class="hifk"></div>
+	<div class="team jyp"><img src="team-logos/jyp.png" alt="jyp" class="jyp"></div>
+	<div class="team kalpa"><img src="team-logos/kalpa.png" alt="kalpa" class="kalpa"></div>
+	<div class="team kookoo"><img src="team-logos/kookoo.png" alt="kookoo" class="kookoo"></div>
+	<div class="team karpat"><img src="team-logos/karpat.png" alt="karpat" class="hifk"></div>
+	<div class="team lukko"><img src="team-logos/lukko.png" alt="lukko" class="hifk lukko"></div>
+	<div class="team pelicans"><img src="team-logos/pelicans.png" alt="pelicans" class="hifk"></div>
+	<div class="team saipa"><img src="team-logos/saipa.png" alt="saipa" class="hifk"></div>
+	<div class="team sport"><img src="team-logos/sport.png" alt="sport" class="hifk"></div>
+	<div class="team tappara"><img src="team-logos/tappara.png" alt="tappara" class="hifk"></div>
+	<div class="team tps"><img src="team-logos/tps.png" alt="tps" class="hifk"></div>
+	<div class="team assat"><img src="team-logos/assat.png" alt="assat" class="hifk"></div>
 
 	<!--JSP here-->
 </div>
@@ -72,11 +72,7 @@
 			<!--Здесь будут игры-->
 
 			<div class="games-list">
-
 				<%= request.getAttribute("team_schedule") %>
-
-
-
 				<div>
 					<a href="" class="anchor">
 						<p class="teams-schedule">view full schedule</p>
@@ -84,14 +80,7 @@
 				</div>
 
 			</div>
-
-
-
-
-
 			<!--Конец играм(((-->
-
-
 		</div>
 
 		<!--Таблица команд-->
@@ -103,7 +92,6 @@
 					<p>SEE STANDINGS WITH MORE DETAILS</p>
 				</a>
 			</div>
-			<% String str;%>
 			<!--Teams-->
 		</div>
 
@@ -112,49 +100,15 @@
 
 	<!--Right column-->
 	<div class="medium-right-column">
-
 		<div class="medium-news-div">
-			<a href="" class="anchor">
-				<div class="news-div-top">
-					<p class="news-header">NEWS</p>
-					<p class="news-highlight">Some text</p>
-					<p class="news-date">04.04.2023</p>
-				</div>
-			</a>
-
-
-
+			<%= request.getAttribute("newsTop")%>
 			<!--Second block-->
 			<div class="div-news-other">
-				<div class="news-div-top-right">
-					<a href="" class="anchor">
-						<p class="news-header">NEWS</p>
-						<p class="news-highlight">Some text</p>
-						<p class="news-date">04.04.2023</p>
-					</a>
-				</div>
-
-				<div class="news-other">
-					<div class="news-div">
-						<a href="" class="anchor">
-							<p class="news-header">NEWS</p>
-							<p class="news-highlight">Some text</p>
-							<p class="news-date">04.04.2023</p>
-						</a>
-					</div>
-					<div class="news-div">
-						<a href="" class="anchor">
-							<p class="news-header">NEWS</p>
-							<p class="news-highlight">Some text</p>
-							<p class="news-date">04.04.2023</p>
-						</a>
-					</div>
-				</div>
-
+				<%= request.getAttribute("newsRight")%>
+				<%= request.getAttribute("newsOther")%>
 			</div>
 			<!--Second block ended-->
 		</div>
-
 		<!--Videos Block-->
 		<div class="main-videos-block">
 			<div class="main-videos">
@@ -165,48 +119,14 @@
 					<div class="video-title-el">
 						<p class="more-videos-link">View more videos</p>
 					</div>
-
-
 				</div>
-				<div class="videos-list">
-					<div class="video">
-						<a href="https://google.com" class="anchor">
-							<img src="../images/2.jpg" alt="" class="video-img">
-							<span class="video-description">Video description Ullmark made incredible save</span>
-						</a>
-						<span  class="video-date">04.04.2023</span>
-					</div>
-					<div class="video">
-						<a href="" class="anchor">
-							<% Media media = (Media)request.getAttribute("media"); %>
-							<img src="<%="views/" + media.getUrl()%>" alt="" class="video-img">
-							<span class="video-description"><%= media.getHeader() %></span>
-						</a>
-						<span  class="video-date">04.04.2023</span>
-					</div>
-					<div class="video">
-						<a href="" class="anchor">
-							<img src="../images/1.jpg" alt="" class="video-img">
-							<span class="video-description">Video description</span>
-						</a>
-						<span  class="video-date">04.04.2023</span>
-					</div>
-					<div class="video">
-						<a href="" class="anchor">
-							<img src="../images/2.jpg" alt="" class="video-img">
-							<span class="video-description">Video description</span>
-						</a>
-						<span  class="video-date">04.04.2023</span>
-					</div>
-				</div>
-
+				<%= request.getAttribute("mediaRow")%>
 			</div>
 		</div>
 		<!--Videos-->
 
 		<!--Players Stats Block-->
 		<div class="div-players-stats">
-
 			<div class="players-stats-info">
 				<div class="players-stats-el">
 					<p class="stats-title">PLAYERS STATS</p>
@@ -232,16 +152,7 @@
 						<button class="stat-selection-el">ROOKIES</button>
 					</div>
 
-
-
-
-
 					<%= request.getAttribute("top_stats")%>
-
-
-
-
-
 
 				</div>
 
@@ -340,13 +251,6 @@
 
 			</div>
 			<!--Players Stats Block-->
-
-
-
-
-
-
-
 			<!--News-->
 			<div class="main-news-block">
 				<div class="main-news">
@@ -357,45 +261,11 @@
 						<div class="news-title-el">
 							<p class="more-news-link">Read-more</p>
 						</div>
-
-
 					</div>
-					<div class="news-list">
-						<div class="news">
-							<a href="https://google.com" class="anchor">
-								<img src="../images/3.jpg" alt="" class="video-img">
-								<span class="news-description">Video description Ullmark made incredible save</span>
-							</a>
-							<span  class="news-date">04.04.2023</span>
-						</div>
-						<div class="news">
-							<a href="" class="anchor">
-								<img src="../images/7.jpg" alt="" class="video-img">
-								<span class="news-description">News description</span>
-							</a>
-							<span  class="news-date">04.04.2023</span>
-						</div>
-						<div class="news">
-							<a href="" class="anchor">
-
-								<img src="../images/9.png" alt="" class="video-img">
-								<span class="news-description">News description</span>
-							</a>
-							<span  class="news-date">04.04.2023</span>
-						</div>
-						<div class="news">
-							<a href="" class="anchor">
-								<img src="../images/8.jpg" alt="" class="video-img">
-								<span class="news-description" >News description</span>
-							</a>
-							<span  class="news-date">04.04.2023</span>
-						</div>
-					</div>
-
+					<%= request.getAttribute("articleRow")%>
 				</div>
 			</div>
 			<!--News-->
-
 		</div>
 	</div>
 	<!--Medium right column-->
@@ -408,13 +278,11 @@
 </div>
 
 <script>
-function targetClick () {
-    const elems = document.querySelector('#testId');
-    console.log(elems);
-}
-targetClick()
+	function targetClick () {
+        const elems = document.querySelector('#testId');
+        console.log(elems);
+	}
+	targetClick()
 	</script>
-<script src="component/jquery/jquery.js" type="text/javascript"></script>
-<script src="component/jquery/jquery.min.js" type="text/javascript"></script>
 </body>
 </html>

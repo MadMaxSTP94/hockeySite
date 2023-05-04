@@ -39,6 +39,7 @@ D:\Курсач_Back\src\main\java\com\hockeyhigh\dto\team\ShortTeamGameDTO.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\test\Test2.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\model\statistics\TeamStats.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\dao\statsDAO\GoalieStatsDAO.java
+D:\Курсач_Back\src\main\java\com\hockeyhigh\controller\NewsController.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\dao\statsDAO\SkaterStatsDAO.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\model\builders\statsBuilder\SkaterStatsBuilder.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\dto\GameDTO.java
@@ -49,7 +50,9 @@ D:\Курсач_Back\src\main\java\com\hockeyhigh\model\enums\Country.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\util\HTMLUtil.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\dao\entityDAO\PlayerDAO.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\model\statistics\GameStats.java
+D:\Курсач_Back\src\main\java\com\hockeyhigh\controller\PlayerController.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\dao\entityDAO\TeamDAO.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\dao\mediaDAO\ArticleDAO.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\dto\ShortGoalieDTOBuilder.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\model\builders\PlayerBuilder.java
+D:\Курсач_Back\src\main\java\com\hockeyhigh\controller\TeamController.java

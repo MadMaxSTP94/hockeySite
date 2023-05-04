@@ -26,9 +26,24 @@ public class TeamStatsDAO implements DAO<TeamStats> {
                                                    "pp_goals=?,pk_attempts=?,pk_goals=?,season=? where id = ?";
 
     private static final String GET_TEAM_SEASON_STATS = "select * from team_stats where team_id=? and season=?;";
+    private static final String GET_GAME_ID = "select game_id from team_stats where team_id=? order by game_id;";
 
     private TeamStatsDAO() {}
 
+    public long getLastGameId(long team_id) {
+        long game_id = -100;
+        try{
+            Connection connection = DBUtil.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement(GET_GAME_ID);
+            statement.setInt(1,(int)team_id);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) game_id = rs.getInt("game_id");
+        }
+        catch(Exception ex) {
+            System.out.println("No value present! From teamStatsDAO get()");
+        }
+        return game_id;
+    }
     @Override
     public TeamStats get(long id) {
         TeamStats teamStats = null;

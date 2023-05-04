@@ -1,4 +1,4 @@
-package com.hockeyhigh.test;
+package com.hockeyhigh.controller;
 
 import com.hockeyhigh.dao.mediaDAO.MediaDAO;
 import com.hockeyhigh.dto.ShortSkaterDTO;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class TestServlet extends HttpServlet {
+public class NewsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<HighlightTeamStatsDTO> list = TeamDTOUtil.getTeamDTO(Season._20_21);
@@ -33,18 +33,15 @@ public class TestServlet extends HttpServlet {
         req.setAttribute("newsRight",newTopRight);
         String otherNews = HTMLUtil.getNewsTopOther(article.subList(2,4));
         req.setAttribute("newsOther",otherNews);
-        String media = HTMLUtil.getMediaRow(article.subList(0,4));
+
+        String media = HTMLUtil.getMediaRows(article.subList(0,4));
         req.setAttribute("mediaRow",media);
-        String articles = HTMLUtil.getMediaRow(article.subList(0,4));
-        req.setAttribute("articleRow",articles);
         String team_table = HTMLUtil.getTable(list);
         req.setAttribute("team_table", team_table);
         String team_schedule = HTMLUtil.getSchedule(GameDTOUtil.getSchedule());
         req.setAttribute("team_schedule", team_schedule);
-        List<ShortSkaterDTO> skaterList = PlayerDTOUtil.getShortPlayerDTO(Season._22_23);
-        String top_stats = HTMLUtil.getTopStats(skaterList);
-        req.setAttribute("top_stats",top_stats);
 
-        getServletContext().getRequestDispatcher("/views/main.jsp").forward(req,resp);
+        getServletContext().getRequestDispatcher("/views/news.jsp").forward(req,resp);
+
     }
 }

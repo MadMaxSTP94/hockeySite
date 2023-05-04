@@ -12,4 +12,31 @@
     <servlet-name>TestServlet</servlet-name>
     <url-pattern>/test</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>NewsController</servlet-name>
+    <servlet-class>com.hockeyhigh.controller.NewsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewsController</servlet-name>
+    <url-pattern>/news</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>PlayerController</servlet-name>
+    <servlet-class>com.hockeyhigh.controller.PlayerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PlayerController</servlet-name>
+    <url-pattern>/players</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>TeamController</servlet-name>
+    <servlet-class>com.hockeyhigh.controller.TeamController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TeamController</servlet-name>
+    <url-pattern>/teams</url-pattern>
+  </servlet-mapping>
 </web-app>

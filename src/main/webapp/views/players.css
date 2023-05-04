@@ -1,0 +1,51 @@
+.team-standings {
+    width: 100%;
+    background-color: black;
+    padding: 60px;
+}
+
+.team-standings-title {
+    color: #f8f6fa;
+}
+
+.medium-two-column-container {
+    background-color: black;
+}
+
+.teams-table-column {
+
+    text-align: center;
+}
+
+#nech {
+    background-color: black;
+    color:#f8f6fa;
+}
+
+.stat {
+    background-color: #363636;
+    color:#f8f6fa;
+}
+
+.filters {
+    background-color: #181818;
+    color:#f8f6fa;
+    padding: 30px;
+}
+
+.header .points{
+    background-color: #64a143;
+    color: #f8f6fa;
+    text-align: center;
+
+}
+
+td{
+    border:3px solid black;
+}
+
+.filter-list {
+    margin-top: 20px;
+    display: flex;
+    gap: 50px;
+}

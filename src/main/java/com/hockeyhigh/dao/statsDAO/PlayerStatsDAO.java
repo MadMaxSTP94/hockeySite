@@ -20,8 +20,24 @@ public class PlayerStatsDAO implements DAO<PlayerStats> {
     private static final String DELETE_PLAYER_STATS = "delete from player_stats where player_id =?;";
     private static final String INSERT_PLAYER_STATS = "insert into player_stats(player_id,game_id,total_ice_time,season,team_id) values(?,?,?,?,?);";
     private static final String UPDATE_PLAYER_STATS = "update player_stats set player_id = ?,game_id = ?, total_ice_time = ?,season = ?, team_id =? where id = ?";
+    private static final String GET_TEAM_ID = "select team_id from player_stats where player_id =?;";
 
     private PlayerStatsDAO() { }
+
+    public long getTeamId(long player_id) {
+        long team_id = -100;
+        try{
+            Connection connection = DBUtil.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement(GET_TEAM_ID);
+            statement.setInt(1,(int)player_id);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) team_id = rs.getInt("team_id");
+        }
+        catch(Exception ex) {
+            System.out.println("No value present! From playerStatsDAO get()");
+        }
+        return team_id;
+    }
 
     @Override
     public PlayerStats get(long id) {
