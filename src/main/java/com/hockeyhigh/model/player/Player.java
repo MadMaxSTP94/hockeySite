@@ -13,6 +13,7 @@ import com.hockeyhigh.util.StringUtil;
 
 public class Player {
     private long id;
+    private long team_id;
     private String name;
     private String place_of_birth;
     private String photo_url;
@@ -27,6 +28,7 @@ public class Player {
 
     public Player(PlayerBuilder playerBuilder) {
         this.id = playerBuilder.getId();
+        this.team_id = playerBuilder.getTeam_id();
         this.name = playerBuilder.getName();
         this.photo_url = playerBuilder.getPhoto_url();
         this.place_of_birth = playerBuilder.getPlace_of_birth();
@@ -40,6 +42,7 @@ public class Player {
         stats = new HashSet<>();
     }
 
+    public long getTeam_id() { return team_id; }
     public String getName() {
         return name;
     }

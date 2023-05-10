@@ -1,0 +1,19 @@
+.medium-right-column {
+    background-color: #f8f6fa;
+}
+
+.medium-news-div {
+    display: grid;
+}
+
+.article-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.news-image {
+    max-height: 516px;
+    max-width: 863px;
+}
+

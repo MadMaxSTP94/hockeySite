@@ -16,7 +16,7 @@ import java.util.List;
 public class TeamStatsDAO implements DAO<TeamStats> {
     private static TeamStatsDAO instance;
     private static final String ALL_TEAM_STATS = "select * from team_stats;";
-    private static final String GET_TEAM_STATS = "select * from team_stats where team_id =? ;";
+    private static final String GET_TEAM_STATS = "select * from team_stats where team_id =? and season=? ;";
     private static final String DELETE_TEAM_STATS = "delete from team_stats where id =?;";
     private static final String INSERT_TEAM_STATS = "insert into team_stats(team_id,game_id,wins,ties,loses,ot_wins,goals_for,goals_against," +
                                                     "pp_attempts,pp_goals,pk_attempts,pk_goals,season) values(?,?,?,?,?,?,?,?,?,?,?,?,?);";
@@ -60,6 +60,25 @@ public class TeamStatsDAO implements DAO<TeamStats> {
         return teamStats;
     }
 
+    public List<TeamStats> getAll(long team_id,Season season) {
+        List<TeamStats> teamStatsList = null;
+        try{
+            Connection connection = DBUtil.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement(GET_TEAM_STATS);
+            statement.setInt(1,(int)team_id);
+            statement.setString(2,season.toString());
+            ResultSet rs = statement.executeQuery();
+            teamStatsList = new ArrayList<>();
+            while(rs.next()) {
+                TeamStats teamStats = new TeamStatsBuilder(rs).build();
+                teamStatsList.add(teamStats);
+            }
+        }
+        catch(Exception ex) {
+            System.out.println("Didn't connect to database! From teamStatsDao getAll()");
+        }
+        return teamStatsList;
+    }
     @Override
     public List<TeamStats> getAll() {
         List<TeamStats> teamStatsList = null;

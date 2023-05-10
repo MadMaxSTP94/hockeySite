@@ -16,10 +16,11 @@ public class PlayerDAO implements DAO<Player> {
     private static final String ALL_PLAYER = "select * from player;";
     private static final String GET_PLAYER = "select * from player where id =";
     private static final String DELETE_PLAYER = "delete from player where id =";
+    private static final String GET_TEAM_ID = "select team_id from player where id =";
     private static final String INSERT_PLAYER = "insert into player" +
                                                 "(name ,place_of_birth ,photo_url,nationality," +
-                                                "date_of_birth, shoots , position, age, height, weight)" +
-                                                " values(?,?,?,?,?,?,?,?,?,?);";
+                                                "date_of_birth, shoots , position, age, height, weight,team_id)" +
+                                                " values(?,?,?,?,?,?,?,?,?,?,?);";
     private static final String UPDATE_PLAYER = "update player set name = ?," +
                                                 "place_of_birth = ?," +
                                                 "photo_url = ?," +
@@ -29,7 +30,8 @@ public class PlayerDAO implements DAO<Player> {
                                                 "position = ?," +
                                                 "age = ?," +
                                                 "height = ?," +
-                                                "weight = ? where id = ?";
+                                                "weight = ?," +
+                                                "team_id=? where id = ?";
 
     private PlayerDAO() {}
 
@@ -47,6 +49,20 @@ public class PlayerDAO implements DAO<Player> {
             System.out.println("No value present! From playerDAO get()");
         }
         return player;
+    }
+
+    public long getTeamID(long id) {
+        long team_id = -100;
+        try{
+            Connection connection = DBUtil.getInstance().getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(GET_TEAM_ID + id + ";");
+            if(rs.next()) team_id = rs.getInt("team_id");
+        }
+        catch(Exception ex) {
+            System.out.println("No value present! From playerDAO get()");
+        }
+        return team_id;
     }
 
     @Override
@@ -129,6 +145,7 @@ public class PlayerDAO implements DAO<Player> {
             statement.setInt(parameterIndex++,player.getAge());
             statement.setInt(parameterIndex++,player.getHeight());
             statement.setInt(parameterIndex++,player.getWeight());
+            statement.setInt(parameterIndex++,(int)player.getTeam_id());
         }
         catch (Exception ex) {
             System.out.println("Failed to set values for statement");

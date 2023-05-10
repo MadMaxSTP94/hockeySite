@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 
 public class PlayerBuilder {
     protected long id;
+    protected long team_id;
     protected String photo_url;
     protected String name;
     protected String place_of_birth;
@@ -25,6 +26,7 @@ public class PlayerBuilder {
         if(rs != null) {
             try {
                 long id = rs.getInt("id");
+                long team_id = rs.getInt("team_id");
                 String name = rs.getString("name");
                 String place_of_birth = rs.getString("place_of_birth");
                 String photo_url = rs.getString("photo_url");
@@ -36,7 +38,8 @@ public class PlayerBuilder {
                 Shoots shoots = Shoots.valueOf(rs.getString("shoots"));
                 Position position = Position.valueOf(rs.getString("position"));
 
-                    this.setId(id)
+                this.setId(id)
+                        .setTeamId(team_id)
                         .setName(name)
                         .setPlaceOfBirth(place_of_birth)
                         .setPhotoUrl(photo_url)
@@ -52,6 +55,11 @@ public class PlayerBuilder {
                 System.out.println("RS exception from constructor");
             }
         }
+    }
+
+    public PlayerBuilder setTeamId(long team_id) {
+        this.team_id = team_id;
+        return this;
     }
 
     public PlayerBuilder setId(long id) {
@@ -130,6 +138,8 @@ public class PlayerBuilder {
     public Position getPosition() { return position; }
 
     public String getDate_of_birth() { return date_of_birth; }
+
+    public long getTeam_id() { return team_id; }
 
     public Player build() {
         return new Player(this);

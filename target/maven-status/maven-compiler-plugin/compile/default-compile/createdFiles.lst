@@ -26,6 +26,7 @@ com\hockeyhigh\dto\ShortSkaterDTOBuilder.class
 com\hockeyhigh\model\statistics\GameStats.class
 com\hockeyhigh\dao\entityDAO\TeamDAO.class
 com\hockeyhigh\test\TestFile.class
+com\hockeyhigh\controller\StatsController.class
 com\hockeyhigh\util\DataUtil.class
 com\hockeyhigh\util\PlayerDTOUtil.class
 com\hockeyhigh\test\Test2.class
@@ -33,6 +34,7 @@ com\hockeyhigh\util\FileUtil.class
 com\hockeyhigh\dao\DAO.class
 com\hockeyhigh\dto\GameDTOBuilder.class
 com\hockeyhigh\model\enums\Status.class
+com\hockeyhigh\controller\TeamInfoController.class
 com\hockeyhigh\dao\statsDAO\SkaterStatsDAO.class
 com\hockeyhigh\dto\ShortGoalieDTOBuilder.class
 com\hockeyhigh\dto\ShortSkaterDTO.class
@@ -56,3 +58,4 @@ com\hockeyhigh\controller\PlayerController.class
 com\hockeyhigh\dao\statsDAO\GoalieStatsDAO.class
 com\hockeyhigh\controller\TeamController.class
 com\hockeyhigh\model\statistics\SkaterStats.class
+com\hockeyhigh\controller\MediaController.class

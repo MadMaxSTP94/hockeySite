@@ -33,7 +33,7 @@ public class TestServlet extends HttpServlet {
         req.setAttribute("newsRight",newTopRight);
         String otherNews = HTMLUtil.getNewsTopOther(article.subList(2,4));
         req.setAttribute("newsOther",otherNews);
-        String media = HTMLUtil.getMediaRow(article.subList(0,4));
+        String media = HTMLUtil.getMediaRow(videos);
         req.setAttribute("mediaRow",media);
         String articles = HTMLUtil.getMediaRow(article.subList(0,4));
         req.setAttribute("articleRow",articles);

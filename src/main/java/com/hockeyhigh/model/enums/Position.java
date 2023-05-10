@@ -1,7 +1,9 @@
 package com.hockeyhigh.model.enums;
 
 public enum Position {
-    FORWARD,
+    LW,
+    RW,
+    C,
     DEFENDER,
     GOALIE
 }

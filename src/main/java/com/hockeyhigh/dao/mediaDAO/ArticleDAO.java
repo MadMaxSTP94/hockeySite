@@ -15,7 +15,7 @@ public class ArticleDAO implements DAO<Article> {
     private static ArticleDAO instance;
 
     private static final String ALL_ARTICLE = "select * from article;";
-    private static final String GET_ARTICLE = "select * from article where id =";
+    private static final String GET_ARTICLE = "select * from article where media_id =";
     private static final String DELETE_ARTICLE = "delete from article where id =";
     private static final String INSERT_ARTICLE = "insert into article(body, media_id) values(?,?);";
     private static final String UPDATE_ARTICLE = "update article set body = ?, media_id = ? where id = ?";

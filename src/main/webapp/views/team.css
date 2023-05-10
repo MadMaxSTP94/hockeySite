@@ -1,0 +1,63 @@
+.medium-two-column-container, .team-standings , .teams{
+    background-color: black;
+    color: #f8f6fa;
+}
+
+.medium-two-column-container {
+    margin-top: 0;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+
+.short {
+    margin-top: 40px;
+    display: flex;
+    border: 2px solid #9e9e9e;
+    justify-content:space-between;
+}
+
+.text {
+    gap:25px;
+    margin-left:40px;
+}
+
+.team-info-logo {
+    height:250px;
+    width:250px;
+
+}
+
+.team-info, .team-standings {
+    max-width: 100%;
+    padding: 40px;
+
+}
+
+td{
+    border:3px solid black;
+
+}
+
+.teams-table-column {
+    padding:10px 20px 10px 20px;
+}
+
+.header {
+    color:#68a3d8;
+    font-weight:bold;
+}
+
+.filters {
+    margin-bottom: 40px;
+}
+
+.logo {
+    max-width:40%;
+    width:100%;
+}
+
+#nech {
+    background-color: #363636;
+}

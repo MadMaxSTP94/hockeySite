@@ -10,7 +10,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>TestServlet</servlet-name>
-    <url-pattern>/test</url-pattern>
+    <url-pattern>/main</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -38,5 +38,32 @@
   <servlet-mapping>
     <servlet-name>TeamController</servlet-name>
     <url-pattern>/teams</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>TeamInfoController</servlet-name>
+    <servlet-class>com.hockeyhigh.controller.TeamInfoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TeamInfoController</servlet-name>
+    <url-pattern>/team</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>StatsController</servlet-name>
+    <servlet-class>com.hockeyhigh.controller.StatsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StatsController</servlet-name>
+    <url-pattern>/stats</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>MediaController</servlet-name>
+    <servlet-class>com.hockeyhigh.controller.MediaController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MediaController</servlet-name>
+    <url-pattern>/media</url-pattern>
   </servlet-mapping>
 </web-app>

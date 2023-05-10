@@ -195,10 +195,15 @@ public class PlayerDTOUtil {
     }
 
     public static Team getTeamByPlayerId(long player_id) {
-        PlayerStatsDAO playerStatsDAO = PlayerStatsDAO.getInstance();
-        PlayerStats stats = playerStatsDAO.get(player_id);
-        if(stats == null) return null;
-        return  stats.getTeam(); //последняя запись в статистике
+        //PlayerStatsDAO playerStatsDAO = PlayerStatsDAO.getInstance();
+        //PlayerStats stats = playerStatsDAO.get(player_id);
+        //PlayerDAO playerDAO = PlayerDAO.getInstance();
+        TeamDAO teamDAO = TeamDAO.getInstance();
+        PlayerDAO playerDAO = PlayerDAO.getInstance();
+        Team team = teamDAO.get(playerDAO.getTeamID(player_id));
+        if(team == null) return null;
+        //return  stats.getTeam(); //последняя запись в статистике
+        return team;
     }
 
 }

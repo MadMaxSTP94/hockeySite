@@ -6,6 +6,7 @@ import com.hockeyhigh.dao.statsDAO.TeamStatsDAO;
 import com.hockeyhigh.dto.GameDTO;
 import com.hockeyhigh.dto.GameDTOBuilder;
 import com.hockeyhigh.dto.team.ShortTeamGameDTO;
+import com.hockeyhigh.model.builders.TeamBuilder;
 import com.hockeyhigh.model.game.Game;
 import com.hockeyhigh.model.statistics.TeamStats;
 import com.hockeyhigh.model.team.Team;
@@ -42,8 +43,21 @@ public class GameDTOUtil {
             gameDTOBuilder.setTime(game.getTime());
             gameDTOBuilder.setStatus(game.getStatus());
             //Опасненько
+            int list_size = shortTeamGameDTOList.size();
+            if(list_size != 2) {
+                if(list_size == 1) {
+                    shortTeamGameDTOList.add(new ShortTeamGameDTO("None","https://liiga.fi/static/media/logo_liiga_small.85530e4269a1040069b7.webp",0));
+                }
+
+                if(list_size == 0) {
+                    shortTeamGameDTOList.add(new ShortTeamGameDTO("None","https://liiga.fi/static/media/logo_liiga_small.85530e4269a1040069b7.webp",0));
+                    shortTeamGameDTOList.add(new ShortTeamGameDTO("None","https://liiga.fi/static/media/logo_liiga_small.85530e4269a1040069b7.webp",0));
+
+                }
+            }
             gameDTOBuilder.setHome(shortTeamGameDTOList.get(0));
             gameDTOBuilder.setGuest(shortTeamGameDTOList.get(1));
+
 
             gameDTOS.add(gameDTOBuilder.build());
 

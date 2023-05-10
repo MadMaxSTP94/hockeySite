@@ -19,36 +19,36 @@
 <body>
 <div class="parade-container">
 	<!--Команды-->
-	<div class="team hifk"><img src="team-logos/hifk.png" alt="hifk" class="hifk"></div>
-	<div class="team hpk"><img src="team-logos/hpk.png" alt="hpk" class="hifk"></div>
-	<div class="team ilves"><img src="team-logos/ilves.png" alt="ilves" class="hifk"></div>
-	<div class="team jukurit"><img src="team-logos/jukurit.png" alt="jukurit" class="hifk"></div>
-	<div class="team jyp"><img src="team-logos/jyp.png" alt="jyp" class="jyp"></div>
-	<div class="team kalpa"><img src="team-logos/kalpa.png" alt="kalpa" class="kalpa"></div>
-	<div class="team kookoo"><img src="team-logos/kookoo.png" alt="kookoo" class="kookoo"></div>
-	<div class="team karpat"><img src="team-logos/karpat.png" alt="karpat" class="hifk"></div>
-	<div class="team lukko"><img src="team-logos/lukko.png" alt="lukko" class="hifk lukko"></div>
-	<div class="team pelicans"><img src="team-logos/pelicans.png" alt="pelicans" class="hifk"></div>
-	<div class="team saipa"><img src="team-logos/saipa.png" alt="saipa" class="hifk"></div>
-	<div class="team sport"><img src="team-logos/sport.png" alt="sport" class="hifk"></div>
-	<div class="team tappara"><img src="team-logos/tappara.png" alt="tappara" class="hifk"></div>
-	<div class="team tps"><img src="team-logos/tps.png" alt="tps" class="hifk"></div>
-	<div class="team assat"><img src="team-logos/assat.png" alt="assat" class="hifk"></div>
+	<div class="team hifk"><a href="/team?id=15"><img src="team-logos/hifk.png" alt="hifk" class="hifk"></a></div>
+	<div class="team hpk"><a href="/team?id=16"><img src="team-logos/hpk.png" alt="hpk" class="hifk"></a></div>
+	<div class="team ilves"><a href="/team?id=14"><img src="team-logos/ilves.png" alt="ilves" class="hifk"></a></div>
+	<div class="team jukurit"><a href="/team?id=17"><img src="team-logos/jukurit.png" alt="jukurit" class="hifk"></a></div>
+	<div class="team jyp"><a href="/team?id=18"><img src="team-logos/jyp.png" alt="jyp" class="jyp"></a></div>
+	<div class="team kalpa"><a href="/team?id=20"><img src="team-logos/kalpa.png" alt="kalpa" class="kalpa"></a></div>
+	<div class="team kookoo"><a href="/team?id=21"><img src="team-logos/kookoo.png" alt="kookoo" class="kookoo"></a></div>
+	<div class="team karpat"><a href="/team?id=22"><img src="team-logos/karpat.png" alt="karpat" class="hifk"></a></div>
+	<div class="team lukko"><a href="/team?id=23"><img src="team-logos/lukko.png" alt="lukko" class="hifk lukko"></a></div>
+	<div class="team pelicans"><a href="/team?id=12"><img src="team-logos/pelicans.png" alt="pelicans" class="hifk"></a></div>
+	<div class="team saipa"><a href="/team?id=24"><img src="team-logos/saipa.png" alt="saipa" class="hifk"></a></div>
+	<div class="team sport"><a href="/team?id=25"><img src="team-logos/sport.png" alt="sport" class="hifk"></a></div>
+	<div class="team tappara"><a href="/team?id=5"><img src="team-logos/tappara.png" alt="tappara" class="hifk"></a></div>
+	<div class="team tps"><a href="/team?id=26"><img src="team-logos/tps.png" alt="tps" class="hifk"></a></div>
+	<div class="team assat"><a href="/team?id=27"><img src="team-logos/assat.png" alt="assat" class="hifk"></a></div>
 
 	<!--JSP here-->
 </div>
 
 <header>
 	<div class="main-menu-container">
-		<div class="main-menu-item logo">
-			<a href="" class="anchor">
+		<div class="main-menu-item">
+			<a href="/main" class="anchor">
 				<img src="https://liiga.fi/static/media/logo_liiga_small.85530e4269a1040069b7.webp" alt="">
 			</a>
 		</div>
-		<div class="main-menu-item">News</div>
-		<div class="main-menu-item">Stats</div>
-		<div class="main-menu-item">Players</div>
-		<div class="main-menu-item">Teams</div>
+		<div class="main-menu-item"><a class="anchor" href="/news"><p>News</p></a></div>
+		<div class="main-menu-item"><a class="anchor" href="/stats"><p>Stats</p></a></div>
+		<div class="main-menu-item"><a class="anchor" href="/players"><p>Players</p></a></div>
+		<div class="main-menu-item"><a class="anchor" href="/teams"><p>Teams</p></a></div>
 		<div class="main-menu-item">Games</div>
 	</div>
 </header>
@@ -61,25 +61,26 @@
 		<div class="games-schedule">
 			<div class="games-schedule-group">
 				<div class="schedule-arrow">
-					<button class="left button">&#60</button>
+					<button class="button" id="left">&#60</button>
 				</div>
 				<p class="label">Games</p>
 				<div class="schedule-arrow">
-					<button class="right button">></button>
+					<button class="button" id="right">></button>
 				</div>
 			</div>
 
 			<!--Здесь будут игры-->
 
-			<div class="games-list">
+			<div class="schedule">
 				<%= request.getAttribute("team_schedule") %>
 				<div>
 					<a href="" class="anchor">
 						<p class="teams-schedule">view full schedule</p>
 					</a>
 				</div>
-
 			</div>
+
+
 			<!--Конец играм(((-->
 		</div>
 
@@ -88,7 +89,7 @@
 			<h1 class="team-standings-title">STANDINGS 22-2023</h1>
 			<%=request.getAttribute("team_table")%>
 			<div class="full-teams-stats-link">
-				<a href="" class="anchor">
+				<a href="/teams" class="anchor">
 					<p>SEE STANDINGS WITH MORE DETAILS</p>
 				</a>
 			</div>
@@ -147,7 +148,7 @@
 					</div>
 
 					<div class="stat-selection">
-						<button class="stat-selection-el">ALL</button>
+						<button class="stat-selection-el" id="buttonP">ALL</button>
 						<button class="stat-selection-el">DEFENSMAN</button>
 						<button class="stat-selection-el">ROOKIES</button>
 					</div>
@@ -167,7 +168,7 @@
 					</div>
 
 					<div class="stat-selection">
-						<button class="stat-selection-el">GAA</button>
+						<button class="stat-selection-el" id="buttonG">GAA</button>
 						<button class="stat-selection-el">SAVES%</button>
 						<button class="stat-selection-el">SHUTOUTS</button>
 					</div>
@@ -278,11 +279,83 @@
 </div>
 
 <script>
-	function targetClick () {
-        const elems = document.querySelector('#testId');
-        console.log(elems);
+
+
+	function setButtonsActive() {
+		const buttonP = document.getElementById('buttonP');
+		const buttonG = document.getElementById('buttonG');
+		buttonP.classList.add('active');
+		buttonG.classList.add('active');
 	}
-	targetClick()
-	</script>
+
+	function setButtonEvents() {
+		const buttons = document.querySelectorAll('.stat-selection-el');
+		const buttonsP = Object.values(buttons).slice(0,3);
+		const buttonsG = Object.values(buttons).slice(3);
+		setEventListeners(buttonsP);
+		setEventListeners(buttonsG);
+	}
+
+	function setEventListeners(buttons) {
+		console.log(buttons);
+		buttons[0].addEventListener('click', function() {
+			this.classList.add('active');
+			buttons[1].classList.remove('active');
+			buttons[2].classList.remove('active');
+		});
+		buttons[1].addEventListener('click', function() {
+			this.classList.add('active');
+			buttons[0].classList.remove('active');
+			buttons[2].classList.remove('active');
+		});
+		buttons[2].addEventListener('click', function() {
+			this.classList.add('active');
+			buttons[0].classList.remove('active');
+			buttons[1].classList.remove('active');
+		});
+	}
+
+	function setSlider() {
+		var slides = document.querySelectorAll('.games-list');
+		var currentSlide = 0;
+		var slideInterval = setInterval(nextSlide, 5000);
+
+		var prevButton = document.querySelector('#left');
+		var nextButton = document.querySelector('#right');
+
+		function nextSlide() {
+			if(currentSlide != slides.length - 1) {
+				slides[currentSlide].classList.add('hidden');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.remove('hidden');
+			}
+		}
+
+		function prevSlide() {
+			if(currentSlide > 0) {
+				slides[currentSlide].classList.add('hidden');
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                slides[currentSlide].classList.remove('hidden');
+			}
+		}
+
+		prevButton.addEventListener('click', function() {
+            clearInterval(slideInterval);
+            prevSlide();
+            slideInterval = setInterval(nextSlide, 5000);
+		});
+
+		nextButton.addEventListener('click', function() {
+            clearInterval(slideInterval);
+            nextSlide();
+            slideInterval = setInterval(nextSlide, 5000);
+		});
+	}
+
+	setButtonsActive();
+	setButtonEvents();
+	setSlider();
+
+</script>
 </body>
 </html>
