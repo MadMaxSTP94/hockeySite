@@ -30,4 +30,6 @@ public class ShortSkaterDTO {
     public int getAssists() { return assists; }
 
     public Position getPosition() { return position; }
+
+    public int getTotal() { return goals + assists; }
 }

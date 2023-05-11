@@ -16,7 +16,7 @@ public class GoalieStatsDAO implements DAO<GoalieStats> {
     private static GoalieStatsDAO instance;
 
     private static final String ALL_GOALIE_STATS = "select * from goalie_stats;";
-    private static final String GET_GOALIE_STATS = "select * from goalie_stats where id =? ;";
+    private static final String GET_GOALIE_STATS = "select * from goalie_stats where player_stats_id =? ;";
     private static final String DELETE_GOALIE_STATS = "delete from goalie_stats where id =?;";
     private static final String INSERT_GOALIE_STATS = "insert into goalie_stats(player_stats_id,wins,loses,shutouts,ties," +
                                                       "saves_count,goals_against,shots_faced) values(?,?,?,?,?,?,?,?);";

@@ -34,6 +34,7 @@ public class GoalieStats extends PlayerStats{
     }
 
     public float getGoals_against_average() {
+        if(total_ice_time == null) return 0;
         return 60.0f * goals_against / Integer.parseInt(DataUtil.getMinutes(total_ice_time)) ;
     }
 

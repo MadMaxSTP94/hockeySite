@@ -6,6 +6,7 @@ import com.hockeyhigh.dao.mediaDAO.ArticleDAO;
 import com.hockeyhigh.dao.statsDAO.PlayerStatsDAO;
 import com.hockeyhigh.dao.statsDAO.TeamStatsDAO;
 import com.hockeyhigh.dto.GameDTO;
+import com.hockeyhigh.dto.ShortGoalieDTO;
 import com.hockeyhigh.dto.ShortSkaterDTO;
 import com.hockeyhigh.dto.team.HighlightTeamStatsDTO;
 import com.hockeyhigh.model.builders.TeamBuilder;
@@ -20,7 +21,9 @@ import com.hockeyhigh.model.statistics.PlayerStats;
 import com.hockeyhigh.model.statistics.TeamStats;
 import com.hockeyhigh.model.team.Team;
 
+import java.text.DecimalFormat;
 import java.util.List;
+import java.util.function.Function;
 
 public class HTMLUtil {
     public static String getTable(List<HighlightTeamStatsDTO> list){
@@ -107,7 +110,7 @@ public class HTMLUtil {
         if(list.size() > 0){
             ShortSkaterDTO topPlayer = list.get(0);
 
-            builder.append("<div class=\"top-player-container\">\n" +
+            builder.append("<div class=\"top-player-container\" hidden >\n" +
                     "\t\t\t\t\t\t<div class=\"top-player-el\">\n" +
                     "\t\t\t\t\t\t\t<img src=\"" + topPlayer.getPhoto_url() + "\" alt=\"\" class=\"player-photo\">\n" +
                     "\t\t\t\t\t\t\t<div class=\"player-info\">\n" +
@@ -116,7 +119,7 @@ public class HTMLUtil {
                     "\t\t\t\t\t\t\t\t\t<p class=\"player-name\">" + topPlayer.getPlayer_name() + "</p>\n" +
                     "\t\t\t\t\t\t\t\t</div>\n" +
                     "\t\t\t\t\t\t\t\t<div class=\"player-info-el\">\n" +
-                    "\t\t\t\t\t\t\t\t\t<div class=\"player-name\">Points: " + topPlayer.getGoals() + " + " + topPlayer.getAssists() + "=" + (topPlayer.getGoals()+topPlayer.getAssists()) + "</div>\n" +
+                    "\t\t\t\t\t\t\t\t\t<div class=\"player-name\">Points: " + topPlayer.getGoals() + " + " + topPlayer.getAssists() + " = " + topPlayer.getTotal() + "</div>\n" +
                     "\t\t\t\t\t\t\t\t</div>\n" +
                     "\t\t\t\t\t\t\t</div>\n" +
                     "\t\t\t\t\t\t</div>");
@@ -125,7 +128,7 @@ public class HTMLUtil {
                 builder.append("\t\t\t\t\t\t\t<div class=\"top-player-list-el\">\n" +
                         "\t\t\t\t\t\t\t\t<img src=\"" + skater.getTeam_logo() + "\" alt=\"\" class=\"team-logo\">\n" +
                         "\t\t\t\t\t\t\t\t<span class=\"player-name\">" + skater.getPlayer_name() + "</span>\n" +
-                        "\t\t\t\t\t\t\t\t<span class=\"points\">" + topPlayer.getGoals() + " + " + topPlayer.getAssists() + "=" + (topPlayer.getGoals()+topPlayer.getAssists()) + "</span>\n" +
+                        "\t\t\t\t\t\t\t\t<span class=\"points\">" + skater.getGoals() + " + " + skater.getAssists() + "=" + skater.getTotal() + "</span>\n" +
                         "\t\t\t\t\t\t\t</div>\n"
                         );
             }
@@ -368,6 +371,108 @@ public class HTMLUtil {
                     "\t\t\t</div>");
         }
 
+        return builder.toString();
+    }
+
+    public static String getTopGAAGoalies(List<ShortGoalieDTO> list) {
+        StringBuilder builder = new StringBuilder();
+        DecimalFormat df = new DecimalFormat("#.##");
+        if(list.size() > 0){
+            ShortGoalieDTO topPlayer = list.get(0);
+            builder.append("<div class=\"top-player-container\" hidden >\n" +
+                    "\t\t\t\t\t\t<div class=\"top-player-el\">\n" +
+                    "\t\t\t\t\t\t\t<img src=\"" + topPlayer.getPhoto_url() + "\" alt=\"\" class=\"player-photo\">\n" +
+                    "\t\t\t\t\t\t\t<div class=\"player-info\">\n" +
+                    "\t\t\t\t\t\t\t\t<div class=\"player-info-el\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<img src=\"" + topPlayer.getTeam_logo() + "\" style =\"height:30px; width:30px;\" alt=\"\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<p class=\"player-name\">" + topPlayer.getPlayer_name() + "</p>\n" +
+                    "\t\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t\t<div class=\"player-info-el\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<div class=\"player-name\">GAA: " + df.format(topPlayer.getGGA()) + "</div>\n" +
+                    "\t\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t</div>");
+            builder.append("<div class=\"top-player-list\">");
+            for(ShortGoalieDTO skater : list) {
+                builder.append("\t\t\t\t\t\t\t<div class=\"top-player-list-el\">\n" +
+                        "\t\t\t\t\t\t\t\t<img src=\"" + skater.getTeam_logo() + "\" alt=\"\" class=\"team-logo\">\n" +
+                        "\t\t\t\t\t\t\t\t<span class=\"player-name\">" + skater.getPlayer_name() + "</span>\n" +
+                        "\t\t\t\t\t\t\t\t<span class=\"points\">" + df.format(skater.getGGA()) + "</span>\n" +
+                        "\t\t\t\t\t\t\t</div>\n"
+                );
+            }
+            builder.append("</div>");
+        }
+
+        builder.append("</div>");
+        return builder.toString();
+    }
+
+    public static String getTopSVSGoalies(List<ShortGoalieDTO> list) {
+        StringBuilder builder = new StringBuilder();
+        DecimalFormat df = new DecimalFormat("#.##");
+        if(list.size() > 0){
+            ShortGoalieDTO topPlayer = list.get(0);
+            builder.append("<div class=\"top-player-container\" hidden >\n" +
+                    "\t\t\t\t\t\t<div class=\"top-player-el\">\n" +
+                    "\t\t\t\t\t\t\t<img src=\"" + topPlayer.getPhoto_url() + "\" alt=\"\" class=\"player-photo\">\n" +
+                    "\t\t\t\t\t\t\t<div class=\"player-info\">\n" +
+                    "\t\t\t\t\t\t\t\t<div class=\"player-info-el\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<img src=\"" + topPlayer.getTeam_logo() + "\" style =\"height:30px; width:30px;\" alt=\"\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<p class=\"player-name\">" + topPlayer.getPlayer_name() + "</p>\n" +
+                    "\t\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t\t<div class=\"player-info-el\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<div class=\"player-name\">SAVES%: " + df.format(topPlayer.getSAVES()) + "</div>\n" +
+                    "\t\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t</div>");
+            builder.append("<div class=\"top-player-list\">");
+            for(ShortGoalieDTO skater : list) {
+                builder.append("\t\t\t\t\t\t\t<div class=\"top-player-list-el\">\n" +
+                        "\t\t\t\t\t\t\t\t<img src=\"" + skater.getTeam_logo() + "\" alt=\"\" class=\"team-logo\">\n" +
+                        "\t\t\t\t\t\t\t\t<span class=\"player-name\">" + skater.getPlayer_name() + "</span>\n" +
+                        "\t\t\t\t\t\t\t\t<span class=\"points\">" + df.format(skater.getSAVES()) + "</span>\n" +
+                        "\t\t\t\t\t\t\t</div>\n"
+                );
+            }
+            builder.append("</div>");
+        }
+
+        builder.append("</div>");
+        return builder.toString();
+    }
+
+    public static String getTopSOGoalies(List<ShortGoalieDTO> list) {
+
+        StringBuilder builder = new StringBuilder();
+        if(list.size() > 0){
+            ShortGoalieDTO topPlayer = list.get(0);
+            builder.append("<div class=\"top-player-container\" hidden >\n" +
+                    "\t\t\t\t\t\t<div class=\"top-player-el\">\n" +
+                    "\t\t\t\t\t\t\t<img src=\"" + topPlayer.getPhoto_url() + "\" alt=\"\" class=\"player-photo\">\n" +
+                    "\t\t\t\t\t\t\t<div class=\"player-info\">\n" +
+                    "\t\t\t\t\t\t\t\t<div class=\"player-info-el\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<img src=\"" + topPlayer.getTeam_logo() + "\" style =\"height:30px; width:30px;\" alt=\"\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<p class=\"player-name\">" + topPlayer.getPlayer_name() + "</p>\n" +
+                    "\t\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t\t<div class=\"player-info-el\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<div class=\"player-name\">SHUTOUTS: " + topPlayer.getShutouts() + "</div>\n" +
+                    "\t\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t</div>");
+            builder.append("<div class=\"top-player-list\">");
+            for(ShortGoalieDTO skater : list) {
+                builder.append("\t\t\t\t\t\t\t<div class=\"top-player-list-el\">\n" +
+                        "\t\t\t\t\t\t\t\t<img src=\"" + skater.getTeam_logo() + "\" alt=\"\" class=\"team-logo\">\n" +
+                        "\t\t\t\t\t\t\t\t<span class=\"player-name\">" + skater.getPlayer_name() + "</span>\n" +
+                        "\t\t\t\t\t\t\t\t<span class=\"points\">" + skater.getShutouts() + "</span>\n" +
+                        "\t\t\t\t\t\t\t</div>\n"
+                );
+            }
+            builder.append("</div>");
+        }
+
+        builder.append("</div>");
         return builder.toString();
     }
 }

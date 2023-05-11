@@ -62,24 +62,23 @@
 		<div class="games-schedule">
 			<div class="games-schedule-group">
 				<div class="schedule-arrow">
-					<button class="left button">&#60</button>
+					<button class="button" id="left">&#60</button>
 				</div>
 				<p class="label">Games</p>
 				<div class="schedule-arrow">
-					<button class="right button">></button>
+					<button class="button" id="right">></button>
 				</div>
 			</div>
 
 			<!--Здесь будут игры-->
 
-			<div class="games-list">
+			<div class="schedule">
 				<%= request.getAttribute("team_schedule") %>
 				<div>
 					<a href="" class="anchor">
 						<p class="teams-schedule">view full schedule</p>
 					</a>
 				</div>
-
 			</div>
 			<!--Конец играм(((-->
 		</div>
@@ -118,12 +117,49 @@
 	<div class="footer-secondary-container">gbfgbfgbfgbfgb</div>
 </div>
 
+
 <script>
-	function targetClick () {
-        const elems = document.querySelector('#testId');
-        console.log(elems);
+
+
+	function setSlider() {
+		var slides = document.querySelectorAll('.games-list');
+		var currentSlide = 0;
+		var slideInterval = setInterval(nextSlide, 5000);
+
+		var prevButton = document.querySelector('#left');
+		var nextButton = document.querySelector('#right');
+
+		function nextSlide() {
+			if(currentSlide != slides.length - 1) {
+				slides[currentSlide].classList.add('hidden');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.remove('hidden');
+			}
+		}
+
+		function prevSlide() {
+			if(currentSlide > 0) {
+				slides[currentSlide].classList.add('hidden');
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                slides[currentSlide].classList.remove('hidden');
+			}
+		}
+
+		prevButton.addEventListener('click', function() {
+            clearInterval(slideInterval);
+            prevSlide();
+            slideInterval = setInterval(nextSlide, 5000);
+		});
+
+		nextButton.addEventListener('click', function() {
+            clearInterval(slideInterval);
+            nextSlide();
+            slideInterval = setInterval(nextSlide, 5000);
+		});
 	}
-	targetClick()
-	</script>
+
+	setSlider();
+
+</script>
 </body>
 </html>

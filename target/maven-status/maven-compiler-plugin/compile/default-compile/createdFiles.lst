@@ -53,6 +53,7 @@ com\hockeyhigh\util\GameDTOUtil.class
 com\hockeyhigh\model\builders\PlayerBuilder.class
 com\hockeyhigh\model\team\Team.class
 com\hockeyhigh\model\statistics\TeamStats.class
+com\hockeyhigh\util\ShortSkaterDTOComparator.class
 com\hockeyhigh\model\builders\statsBuilder\PlayerStatsBuilder.class
 com\hockeyhigh\controller\PlayerController.class
 com\hockeyhigh\dao\statsDAO\GoalieStatsDAO.class

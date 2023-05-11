@@ -22,6 +22,7 @@ D:\Курсач_Back\src\main\java\com\hockeyhigh\controller\TeamInfoController.
 D:\Курсач_Back\src\main\java\com\hockeyhigh\dao\entityDAO\GameDAO.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\model\builders\statsBuilder\PlayerStatsBuilder.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\model\game\Game.java
+D:\Курсач_Back\src\main\java\com\hockeyhigh\util\ShortSkaterDTOComparator.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\dto\team\HighlightTeamStatsDTO.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\util\DataUtil.java
 D:\Курсач_Back\src\main\java\com\hockeyhigh\dto\ShortSkaterDTOBuilder.java

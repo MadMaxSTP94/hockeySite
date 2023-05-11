@@ -154,6 +154,8 @@
 					</div>
 
 					<%= request.getAttribute("top_stats")%>
+					<%= request.getAttribute("top_defenders")%>
+					<%= request.getAttribute("top_stats")%>
 
 				</div>
 
@@ -173,79 +175,9 @@
 						<button class="stat-selection-el">SHUTOUTS</button>
 					</div>
 
-					<div class="top-player-container">
-						<div class="top-player-el">
-							<img src="../images/joly.png" alt="" class="player-photo">
-							<div class="player-info">
-								<div class="player-info-el">
-									<img src="../images/vaasan-sport-sm.png" style ="height:30px; width:40px;" alt="">
-									<p class="player-number">#20</p>
-								</div>
-								<div class="player-info-el">
-									<p class="player-name"></p>
-								</div>
-								<div class="player-info-el"></div>
-
-							</div>
-							<div class="player-stats">
-								<p class="points-label">Points</p>
-								<p class="points-total">5+2=7</p>
-							</div>
-						</div>
-						<div class="top-player-list">
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-							<div class="top-player-list-el">
-								<img src="../images/vaasan-sport-sm.png" alt="" class="team-logo">
-								<span class="player-name">Michael Joly</span>
-								<span class="points">5+4=9</span>
-							</div>
-						</div>
-
-					</div>
+					<%= request.getAttribute("top_GAA") %>
+					<%= request.getAttribute("top_SAVES") %>
+					<%= request.getAttribute("top_SO") %>
 
 				</div>
 
@@ -281,39 +213,93 @@
 <script>
 
 
+	const container = document.querySelectorAll('.top-player-container');
+	const arrayPl = Object.values(container);
+
 	function setButtonsActive() {
 		const buttonP = document.getElementById('buttonP');
 		const buttonG = document.getElementById('buttonG');
 		buttonP.classList.add('active');
 		buttonG.classList.add('active');
+		const first = arrayPl[0].style.display = 'grid';
+		const fourth = arrayPl[3].style.display = 'grid';
+		console.log(arrayPl);
 	}
 
 	function setButtonEvents() {
-		const buttons = document.querySelectorAll('.stat-selection-el');
-		const buttonsP = Object.values(buttons).slice(0,3);
-		const buttonsG = Object.values(buttons).slice(3);
+		const allbuttons = document.querySelectorAll('.stat-selection-el');
+		const buttonsP = Object.values(allbuttons).slice(0,3);
+		const buttonsG = Object.values(allbuttons).slice(3);
 		setEventListeners(buttonsP);
-		setEventListeners(buttonsG);
+		setEventGoalies(buttonsG);
 	}
 
-	function setEventListeners(buttons) {
-		console.log(buttons);
+	function setEventGoalies(buttons) {
+		//console.log(buttons);
 		buttons[0].addEventListener('click', function() {
 			this.classList.add('active');
 			buttons[1].classList.remove('active');
 			buttons[2].classList.remove('active');
+			arrayPl[4].style.display = 'none';
+			arrayPl[5].style.display = 'none';
+			arrayPl[3].style.display = 'grid';
+
 		});
 		buttons[1].addEventListener('click', function() {
 			this.classList.add('active');
 			buttons[0].classList.remove('active');
 			buttons[2].classList.remove('active');
+			arrayPl[3].style.display = 'none';
+			arrayPl[5].style.display = 'none';
+			arrayPl[4].style.display = 'grid';
 		});
 		buttons[2].addEventListener('click', function() {
 			this.classList.add('active');
 			buttons[0].classList.remove('active');
+			arrayPl[3].style.display = 'none';
 			buttons[1].classList.remove('active');
+			arrayPl[4].style.display = 'none';
+			arrayPl[5].style.display = 'grid';
 		});
 	}
+
+	function setEventListeners(buttons) {
+		//console.log(buttons);
+		buttons[0].addEventListener('click', function() {
+			this.classList.add('active');
+			buttons[1].classList.remove('active');
+			buttons[2].classList.remove('active');
+			arrayPl[1].style.display = 'none';
+			arrayPl[2].style.display = 'none';
+			arrayPl[0].style.display = 'grid';
+
+		});
+		buttons[1].addEventListener('click', function() {
+			this.classList.add('active');
+			buttons[0].classList.remove('active');
+			arrayPl[0].style.display = 'none';
+			buttons[2].classList.remove('active');
+			arrayPl[2].style.display = 'none';
+			arrayPl[1].style.display = 'grid';
+		});
+		buttons[2].addEventListener('click', function() {
+			this.classList.add('active');
+			buttons[0].classList.remove('active');
+			arrayPl[0].style.display = 'none';
+			buttons[1].classList.remove('active');
+			arrayPl[1].style.display = 'none';
+			arrayPl[2].style.display = 'grid';
+		});
+	}
+
+	function setTopPlayerContainer() {
+		//console.log(container);
+	}
+
+
+
+
+
 
 	function setSlider() {
 		var slides = document.querySelectorAll('.games-list');
@@ -355,6 +341,7 @@
 	setButtonsActive();
 	setButtonEvents();
 	setSlider();
+	setTopPlayerContainer();
 
 </script>
 </body>

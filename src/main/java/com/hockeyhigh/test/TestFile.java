@@ -9,6 +9,7 @@ import com.hockeyhigh.dao.statsDAO.PlayerStatsDAO;
 import com.hockeyhigh.dao.statsDAO.SkaterStatsDAO;
 import com.hockeyhigh.dao.statsDAO.TeamStatsDAO;
 import com.hockeyhigh.dto.GameDTO;
+import com.hockeyhigh.dto.ShortGoalieDTO;
 import com.hockeyhigh.dto.ShortSkaterDTO;
 import com.hockeyhigh.dto.team.HighlightTeamStatsDTO;
 import com.hockeyhigh.dto.team.ShortTeamGameDTO;
@@ -138,31 +139,16 @@ public class TestFile {
         List<Player> players = PlayerDAO.getInstance().getAll();
         String str = HTMLUtil.getPlayersRows(players);*/
 
-        List<HighlightTeamStatsDTO> list = TeamDTOUtil.getTeamDTO(Season._20_21);
-       // req.setAttribute("team_list",list);
 
-        MediaDAO mediaDAO = MediaDAO.getInstance();
-        List<Media> videos = mediaDAO.getAll(MediaType.VIDEO, 4);
-        List<Media> article = mediaDAO.getAll(MediaType.PHOTO, 8);
-        String newsTop = HTMLUtil.getNewsTop(article.get(0));
-        //req.setAttribute("newsTop",newsTop);
-        String newTopRight = HTMLUtil.getNewsTopRights(article.get(1));
-        //req.setAttribute("newsRight",newTopRight);
-        String otherNews = HTMLUtil.getNewsTopOther(article.subList(2,4));
-        //req.setAttribute("newsOther",otherNews);
-        String media = HTMLUtil.getMediaRow(article.subList(0,4));
-        //req.setAttribute("mediaRow",media);
-        String articles = HTMLUtil.getMediaRow(article.subList(0,4));
-        //req.setAttribute("articleRow",articles);
-        String team_table = HTMLUtil.getTable(list);
-        //req.setAttribute("team_table", team_table);
-        List<GameDTO> gameDTOS = GameDTOUtil.getSchedule();
-        String team_schedule = HTMLUtil.getSchedule(gameDTOS);
-        //req.setAttribute("team_schedule", team_schedule);
-        List<ShortSkaterDTO> skaterList = PlayerDTOUtil.getShortPlayerDTO(Season._22_23);
-        String top_stats = HTMLUtil.getTopStats(skaterList);
-        //req.setAttribute("top_stats",top_stats);
+        List<ShortGoalieDTO> goalieDTOS = PlayerDTOUtil.getShortGoalieDTO(Season._22_23);
+        String top_GAA = HTMLUtil.getTopGAAGoalies(PlayerDTOUtil.sortByGAA(goalieDTOS));
+        //req.setAttribute("top_GAA", top_GAA);
 
+        String top_SAVES = HTMLUtil.getTopSVSGoalies(PlayerDTOUtil.sortBySaves(goalieDTOS));
+        //req.setAttribute("top_SAVES", top_SAVES);
+
+        String top_SO = HTMLUtil.getTopSOGoalies(PlayerDTOUtil.sortBySO(goalieDTOS));
+        //req.setAttribute("top_SO", top_SO);
         List<String> strings = FileUtil.readFile("D:\\Курсач_Back\\src\\main\\webapp\\teamInfo\\ilves.txt");
         System.out.println("Well done!");
 
